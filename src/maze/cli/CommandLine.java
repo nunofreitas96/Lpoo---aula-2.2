@@ -6,7 +6,7 @@ import maze.logic.Heroi;
 import maze.logic.Labirinto;
 import maze.logic.LabirintoDraw;
 public class CommandLine {
-
+public int ganhaste = 0;
 	public void commandLine(){
 		
 	}
@@ -33,7 +33,7 @@ public class CommandLine {
 		Labirinto.AdorDragao();
 	}
 	
-	public  int moveHeroi(LabirintoDraw labirinto,Dragao drake,Heroi hero)
+ public  void moveHeroi(LabirintoDraw labirinto,Dragao drake,Heroi hero)
 	{
 		/*if(drake.carater=='D');
 		{if ((((drake.x+1)==x&&drake.y==y)||((drake.x-1)==x&&drake.y==y)||((drake.y-1)==y&&drake.x==x)||((drake.y+1)==y&&drake.x==x))&&armado==false)
@@ -51,45 +51,63 @@ public class CommandLine {
 		Scanner reader = new Scanner(System.in);
 		System.out.print("Insira key: ");
 		char key = reader.nextLine().charAt(0);
-		
-		if( key=='w'&& labirinto.lab[hero.y-1][hero.x]==' ')
-		{
-			
-			labirinto.lab[hero.y][hero.x]=' ';
-			hero.y=hero.y-1;
-			return 1;
-		}
-		if( key=='s'&& (labirinto.lab[hero.y+1][hero.x]==' '||labirinto.lab[hero.y+1][hero.x]=='E'))
-		{
-			labirinto.lab[hero.y][hero.x]=' ';
-			if(labirinto.lab[hero.y+1][hero.x]=='E')
-			{
-				hero.apanhaEspada();
-			}
-			hero.y=hero.y+1;
-			return 2;
-		}
-		if( key=='a'&& labirinto.lab[hero.y][hero.x-1]==' ')
-		{
-			labirinto.lab[hero.y][hero.x]=' ';
-			hero.x=hero.x-1;
-			return 3;
-		}
-		if(key=='d' && labirinto.lab[hero.y][hero.x+1]==' ')
-		{
-			labirinto.lab[hero.y][hero.x]=' ';
-			hero.x=hero.x+1;
-			return 4;
-		}
-		if(key=='d' && labirinto.lab[hero.y][hero.x+1]=='S' && drake.carater==' ')
-		{
-			labirinto.lab[hero.y][hero.x]=' ';
-			hero.x=hero.x+1;
-			System.out.println("::::YOU WIN::::");
-			System.exit(0);
-		}
-		return 0;
+		moveHeroKey(key,labirinto,drake,hero);
+
 	}
 	
 	
+
+public int moveHeroKey(char key,LabirintoDraw labirinto,Dragao drake,Heroi hero)
+{
+	if( key=='w'&& (labirinto.lab[hero.y-1][hero.x]==' '||labirinto.lab[hero.y-1][hero.x]=='E'))
+	{
+		
+		labirinto.lab[hero.y][hero.x]=' ';
+		if(labirinto.lab[hero.y-1][hero.x]=='E')
+		{
+			hero.apanhaEspada();
+		}
+		hero.y=hero.y-1;
+		return 1;
+	}
+	if( key=='s'&& (labirinto.lab[hero.y+1][hero.x]==' '||labirinto.lab[hero.y+1][hero.x]=='E'))
+	{
+		labirinto.lab[hero.y][hero.x]=' ';
+		if(labirinto.lab[hero.y+1][hero.x]=='E')
+		{
+			hero.apanhaEspada();
+		}
+		hero.y=hero.y+1;
+		return 2;
+	}
+	if( key=='a'&& (labirinto.lab[hero.y][hero.x-1]==' '||labirinto.lab[hero.y][hero.x-1]=='E'))
+	{
+		labirinto.lab[hero.y][hero.x]=' ';
+		if(labirinto.lab[hero.y][hero.x-1]=='E')
+		{
+			hero.apanhaEspada();
+		}
+		hero.x=hero.x-1;
+		return 3;
+	}
+	if( key=='d' && (labirinto.lab[hero.y][hero.x+1]==' '||labirinto.lab[hero.y][hero.x+1]=='E'))
+	{
+		labirinto.lab[hero.y][hero.x]=' ';
+		if(labirinto.lab[hero.y][hero.x+1]=='E')
+		{
+			hero.apanhaEspada();
+		}
+		hero.x=hero.x+1;
+		return 4;
+	}
+	if( key=='d' && labirinto.lab[hero.y][hero.x+1]=='S' && drake.estado=="morto")
+	{
+		labirinto.lab[hero.y][hero.x]=' ';
+		hero.x=hero.x+1;
+		ganhaste=1;
+		System.out.println("::::YOU WIN::::");
+		System.exit(0);
+	}
+	return 0;
+}
 }

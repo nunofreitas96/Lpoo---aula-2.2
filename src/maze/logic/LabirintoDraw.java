@@ -2,7 +2,7 @@ package maze.logic;
 
 public class LabirintoDraw {
 
-boolean gameover;
+public boolean gameover;
 public char[][] lab =   {{'X','X','X','X','X','X','X','X', 'X','X'},
 				{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
 				{'X',' ','X','X',' ','X',' ','X',' ','X'},
