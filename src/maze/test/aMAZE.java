@@ -20,7 +20,7 @@ public class aMAZE {
 	}*/
 	
 	
-	@Test
+	//@Test
 	public void Movetest() {
 		Heroi heroi = new Heroi();
 		Dragao drake = new Dragao();
@@ -35,7 +35,7 @@ public class aMAZE {
 		assertEquals(2,heroi.y);
 		
 	}
-	@Test
+	//@Test
 	public void MoveWalltest() {
 		Heroi heroi = new Heroi();
 		Dragao drake = new Dragao();
@@ -50,7 +50,7 @@ public class aMAZE {
 		assertEquals(3,heroi.y);
 		
 	}
-	@Test
+	//@Test
 	public void TestCatchSword(){
 		Heroi heroi = new Heroi();
 		Dragao drake = new Dragao();
@@ -64,7 +64,7 @@ public class aMAZE {
 		assertEquals(true,heroi.armado);
 		
 	}
-	@Test
+	//@Test
 	public void TestDeath(){
 		Heroi heroi = new Heroi();
 		Dragao drake = new Dragao();
@@ -75,7 +75,7 @@ public class aMAZE {
 		assertEquals(true,labirinto.gameover);
 		
 	}
-	@Test
+	//@Test
 	public void testDDeath(){
 		Heroi heroi = new Heroi();
 		Dragao drake = new Dragao();
@@ -104,7 +104,7 @@ public class aMAZE {
 		assertEquals(1, cli.ganhaste);
 	}
 	
-	@Test
+	//@Test
 	public void testVictoryFail() {
 		Heroi heroi = new Heroi();
 		Dragao drake = new Dragao();
@@ -119,7 +119,7 @@ public class aMAZE {
 	}
 	
 	
-	@Test
+	//@Test
 	public void testVictoryAFail() {
 		Heroi heroi = new Heroi();
 		Dragao drake = new Dragao();
@@ -135,5 +135,20 @@ public class aMAZE {
 	}
 	
 	
-
+	//@Test
+	public void testDragonMove(){
+		Dragao drake = new Dragao();
+		CommandLine cli = new CommandLine();
+		LabirintoDraw labirinto = new LabirintoDraw();
+		drake.move(labirinto);
+		assertEquals(1,drake.x);
+		assertEquals(2,4,drake.y);
+		
+		
+		
+	}
+	
+	
+	
+	
 }
