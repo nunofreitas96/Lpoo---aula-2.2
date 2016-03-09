@@ -32,7 +32,7 @@ public class Labirinto {
 		LabirintoDraw labirinto= new LabirintoDraw();
 		labirinto.MazeBuilder();
 		int[] exit = labirinto.SearchExit();
-		labirinto.MakeWay(1,1);
+		labirinto.MakeWay(exit[1],exit[0]);
 		labirinto.LabirintoDesenho();
 		
     }

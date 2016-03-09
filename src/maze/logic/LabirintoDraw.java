@@ -5,8 +5,8 @@ import java.util.Random;
 
 public class LabirintoDraw {
 public boolean gameover;
-public int sizex=33;
-public int sizey=11;
+public int sizex=7;
+public int sizey=7;
 Deque<Integer> stackVisitsx = new ArrayDeque<Integer>();
 Deque<Integer> stackVisitsy = new ArrayDeque<Integer>();
 public char[][] lab; /*=   {{'X','X','X','X','X','X','X','X', 'X','X'},
@@ -57,8 +57,39 @@ public int[] SearchExit(){
 		x= generator.nextInt((sizex-1)/2)+1;
 		y= generator.nextInt((sizey-1)/2)+1;
 	}
-	
-	if(x == 1){
+	if (x==1&&y==1)
+	{
+		int n= generator.nextInt(2);
+		if (n == 0)
+		{lab[1][0] = 'S';}
+		else
+		{lab[0][1] = 'S';}
+	}
+	else if (x==1 && y ==(sizey-1)/2) 
+	{
+		int n= generator.nextInt(2);
+		if (n == 0)
+		{lab[sizey-2][0] = 'S';}
+		else
+		{lab[sizey-1][1] = 'S';}
+	}
+	else if (x==(sizex-1)/2 && y==1)
+	{
+		int n= generator.nextInt(2);
+		if (n == 0)
+		{lab[0][sizex-2] = 'S';}
+		else
+		{lab[1][sizex-1] = 'S';}
+	}
+	else if (x==(sizex-1)/2 && y==(sizey-1)/2)
+	{
+		int n= generator.nextInt(2);
+		if (n == 0)
+		{lab[sizey-1][sizex-2] = 'S';}
+		else
+		{lab[sizey-2][sizex-1] = 'S';}
+	}
+	else if(x == 1){
 		lab[y*2-1][0] = 'S';
 		
 	}
@@ -74,8 +105,8 @@ public int[] SearchExit(){
 	
 	
 	
-	exit[0] =x;
-	exit[1] =y;
+	exit[0] =x-1;
+	exit[1] =y-1;
 	
 	
 	return exit;
@@ -104,9 +135,12 @@ public char[][]MakeWay(int x1, int y1){
 	char[][]visited;
 	visited = FillVisited();
 	visited[y1][x1] = '+';
+	
+	stackVisitsx.push(x1);
+	stackVisitsy.push(y1);
 	whyudodis:
 	while(!CheckVisited(visited)){
-		Random generator= new Random();
+		
 		int[] intDirections = shuffleArray();
 		for(int i=0; i< intDirections.length+1; i++)
 		{
@@ -128,7 +162,7 @@ public char[][]MakeWay(int x1, int y1){
 			{
 				visited[y1-1][x1]='+';
 				stackVisitsx.push(x1);
-				stackVisitsy.push(y1);
+				stackVisitsy.push(y1-1);
 				lab[y1*2][x1*2+1] = ' ';
 				y1=y1-1;
 				System.out.println(1);
@@ -140,7 +174,7 @@ public char[][]MakeWay(int x1, int y1){
 				if(visited[y1+1][x1]== '.' ){
 				visited[y1+1][x1]='+';
 				stackVisitsx.push(x1);
-				stackVisitsy.push(y1);
+				stackVisitsy.push(y1+1);
 				lab[y1*2+2][x1*2+1] = ' ';
 				y1=y1+1;
 				System.out.println(2);
@@ -152,7 +186,7 @@ public char[][]MakeWay(int x1, int y1){
 				if( visited[y1][x1-1]== '.' ){
 				
 				visited[y1][x1-1]='+';
-				stackVisitsx.push(x1);
+				stackVisitsx.push(x1-1);
 				stackVisitsy.push(y1);
 				lab[y1*2+1][x1*2] = ' ';
 			
@@ -165,7 +199,7 @@ public char[][]MakeWay(int x1, int y1){
 				if(visited[y1][x1+1]== '.' ){
 				
 				visited[y1][x1+1]='+';
-				stackVisitsx.push(x1);
+				stackVisitsx.push(x1+1);
 				stackVisitsy.push(y1);
 				lab[y1*2+1][x1*2+2] = ' ';
 				
