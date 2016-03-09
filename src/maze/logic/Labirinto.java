@@ -27,11 +27,13 @@ public class Labirinto {
 		labirinto.checkdeath(drake,heroi,labirinto);
 		
 		}*/
-		CommandLine cli = new CommandLine();
-		cli.readMode();
-		//LabirintoDraw labirinto= new LabirintoDraw();
-		//labirinto.MazeBuilder();
-		//labirinto.LabirintoDesenho();
+		//CommandLine cli = new CommandLine();
+		//cli.readMode();
+		LabirintoDraw labirinto= new LabirintoDraw();
+		labirinto.MazeBuilder();
+		int[] exit = labirinto.SearchExit();
+		labirinto.MakeWay(1,1);
+		labirinto.LabirintoDesenho();
 		
     }
 
