@@ -1,8 +1,9 @@
 package maze.logic;
 
 public class LabirintoDraw {
-
 public boolean gameover;
+public int sizex=10;
+public int sizey=10;
 public char[][] lab =   {{'X','X','X','X','X','X','X','X', 'X','X'},
 				{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
 				{'X',' ','X','X',' ','X',' ','X',' ','X'},
@@ -18,17 +19,38 @@ public LabirintoDraw(){
 	gameover=false;
 };
 
+public char[][] MazeBuilder()
+{
+	char[][]maze = new char[sizey][sizex];
+	//encher de X's as posiçoes pares
+	
+	for (int i =0; i<sizey; i++)
+		{
+			for(int j=0; j<sizex;j++)
+			{
+				if (i % 2 != 0 && j % 2 != 0)
+					maze[i][j] = ' ';
+				else
+					maze[i][j] = 'X';
+						
+			};
+		}
+	lab=maze;
+	return maze;
+}
+
+
 public void LabirintoDesenho()
 {
 
 
-for(int i=0;i<10;i++)
+for(int i=0;i<sizey;i++)
 {
-	for (int j=0;j<10;j++)
+	for (int j=0;j<sizex;j++)
 	{
 
 		System.out.print(lab[i][j]+" ");
-		if(j==9)
+		if(j==sizex-1)
 		{System.out.print('\n');}
 	}
 }

@@ -29,6 +29,10 @@ public class Labirinto {
 		}*/
 		CommandLine cli = new CommandLine();
 		cli.readMode();
+		//LabirintoDraw labirinto= new LabirintoDraw();
+		//labirinto.MazeBuilder();
+		//labirinto.LabirintoDesenho();
+		
     }
 
 public static void Parado()
