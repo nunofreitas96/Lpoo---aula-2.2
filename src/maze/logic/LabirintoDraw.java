@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class LabirintoDraw {
 public boolean gameover;
-public int sizex=11;
+public int sizex=33;
 public int sizey=11;
 Deque<Integer> stackVisitsx = new ArrayDeque<Integer>();
 Deque<Integer> stackVisitsy = new ArrayDeque<Integer>();
@@ -101,14 +101,12 @@ static int[] shuffleArray()
 
 
 public char[][]MakeWay(int x1, int y1){
-	char[][]visited = new char[(sizey-1)/2][(sizex-1)/2];
+	char[][]visited;
 	visited = FillVisited();
 	visited[y1][x1] = '+';
 	whyudodis:
 	while(!CheckVisited(visited)){
 		Random generator= new Random();
-		int n = generator.nextInt(4)+1;
-		boolean move = false;
 		int[] intDirections = shuffleArray();
 		for(int i=0; i< intDirections.length+1; i++)
 		{
@@ -124,14 +122,14 @@ public char[][]MakeWay(int x1, int y1){
 				System.out.println(5);
 			}
 			else{	
-			if(intDirections[i]==1 && y1-1 > 0){
+			if(intDirections[i]==1 && y1-1 >= 0){
 				if(visited[y1-1][x1]== '.')
 			
 			{
 				visited[y1-1][x1]='+';
 				stackVisitsx.push(x1);
 				stackVisitsy.push(y1);
-				lab[y1*2-2][x1*2-1] = ' ';
+				lab[y1*2][x1*2+1] = ' ';
 				y1=y1-1;
 				System.out.println(1);
 				break;
@@ -143,20 +141,20 @@ public char[][]MakeWay(int x1, int y1){
 				visited[y1+1][x1]='+';
 				stackVisitsx.push(x1);
 				stackVisitsy.push(y1);
-				lab[y1*2][x1*2-1] = ' ';
+				lab[y1*2+2][x1*2+1] = ' ';
 				y1=y1+1;
 				System.out.println(2);
 				break;
 				}
 			}
-			if(intDirections[i]==3 && x1-1 > 0 )
+			if(intDirections[i]==3 && x1-1 >= 0 )
 			{
 				if( visited[y1][x1-1]== '.' ){
 				
 				visited[y1][x1-1]='+';
 				stackVisitsx.push(x1);
 				stackVisitsy.push(y1);
-				lab[y1*2-1][x1*2-2] = ' ';
+				lab[y1*2+1][x1*2] = ' ';
 			
 				x1=x1-1;
 				System.out.println(3);
@@ -169,7 +167,7 @@ public char[][]MakeWay(int x1, int y1){
 				visited[y1][x1+1]='+';
 				stackVisitsx.push(x1);
 				stackVisitsy.push(y1);
-				lab[y1*2-1][x1*2] = ' ';
+				lab[y1*2+1][x1*2+2] = ' ';
 				
 				x1=x1+1;
 				System.out.println(4);
@@ -220,9 +218,9 @@ public char[][]MakeWay(int x1, int y1){
 
 public char[][] FillVisited(){
 	
-	char[][]visited = new char[(sizey-1)/2][(sizex-1)/2];
-	for(int i =0; i < (sizey-1)/2; i++){
-		for(int j =0; j < (sizex-1)/2; j++){
+	char[][]visited = new char[(sizey-1)/2 ][(sizex-1)/2];
+	for(int j =0; j < (sizey-1)/2 ; j++){
+		for(int i=0; i < (sizex-1)/2; i++){
 			visited[j][i] = '.';
 		}
 	}
@@ -231,8 +229,8 @@ public char[][] FillVisited(){
 
 public boolean CheckVisited(char[][] visited){
 	
-	for(int i =0; i < (sizey-1)/2; i++){
-		for(int j =0; j < (sizex-1)/2; j++){
+	for(int j=0; j < (sizey-1)/2; j++){
+		for(int i =0; i < (sizex-1)/2; i++){
 			if(visited[j][i] == '.'){
 				return false;
 			}

@@ -1,4 +1,4 @@
-package maze.test;
+/*package maze.test;
 
 import static org.junit.Assert.*;
 
@@ -17,7 +17,7 @@ public class aMAZE {
 		    {'X', 'E', ' ', ' ', 'X'},
 		    {'X', 'X', 'X', 'X', 'X'}};
 		return m1;
-	}*/
+	}
 	
 	
 	//@Test
@@ -150,4 +150,4 @@ public class aMAZE {
 	
 	
 	
-}
+}*/
