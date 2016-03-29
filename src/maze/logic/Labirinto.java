@@ -4,8 +4,11 @@ import java.util.Scanner;
 import maze.cli.CommandLine;
 
 public class Labirinto {
-static int ndrakes=2;
-	public static void main(String[] args) 
+public static int ndrakes=2;
+public static int sizex=11;
+public static int sizey=11;
+public static int modo=2;
+/*	public static void main(String[] args) 
 	{
 		
 		/*int k=1;
@@ -26,7 +29,7 @@ static int ndrakes=2;
 		labirinto.LabirintoDesenho();
 		labirinto.checkdeath(drake,heroi,labirinto);
 		
-		}*/
+		}
 		CommandLine cli = new CommandLine();
 		cli.readMode();
 		
@@ -34,7 +37,8 @@ static int ndrakes=2;
 		
 		
     }
-
+*/
+	
 public static void Parado()
 {
 	int k=1;
@@ -144,6 +148,18 @@ public static void AdorDragao()
 	 System.exit(0);
 	}
 	}
+}
+
+
+public void quasemain() {
+	
+	if (modo==1)
+	{Parado();}
+	if (modo==2)
+	{MovDragao();}
+	if (modo==3)
+	{AdorDragao();}
+	
 }
 }
 

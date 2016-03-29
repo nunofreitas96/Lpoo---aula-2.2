@@ -24,6 +24,7 @@ public class Dragao {
 		temEspada=false;
 		
 	}
+
 	
 	public void dragaoMorre()
 	{
@@ -126,6 +127,7 @@ public class Dragao {
 			return 0;
 		}
 		return 1;
+		
 	}
 }
 
