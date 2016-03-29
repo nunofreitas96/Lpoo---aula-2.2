@@ -33,32 +33,34 @@ public int ganhaste = 0;
 		Labirinto.AdorDragao();
 	}
 	
- public  void moveHeroi(LabirintoDraw labirinto,Dragao drake,Heroi hero)
+ public  void moveHeroi(LabirintoDraw labirinto,Heroi hero)
 	{
-		/*if(drake.carater=='D');
-		{if ((((drake.x+1)==x&&drake.y==y)||((drake.x-1)==x&&drake.y==y)||((drake.y-1)==y&&drake.x==x)||((drake.y+1)==y&&drake.x==x))&&armado==false)
-		{
-			System.out.println("::::GAME OVER::::");
-		System.exit(0);
 		
-		}
-		
-		if ((((drake.x+1)==x&&drake.y==y)||((drake.x-1)==x&&drake.y==y)||((drake.y-1)==y&&drake.x==x)||((drake.y+1)==y&&drake.x==x))&&armado==true)
-		{
-			labirinto.lab[drake.y][drake.x]=' ';
-			drake.dragaoMorre();
-		}}*/
 		Scanner reader = new Scanner(System.in);
 		System.out.print("Insira key: ");
 		char key = reader.nextLine().charAt(0);
-		moveHeroKey(key,labirinto,drake,hero);
+		moveHeroKey(key,labirinto,hero);
 
 	}
 	
 	
 
-public int moveHeroKey(char key,LabirintoDraw labirinto,Dragao drake,Heroi hero)
+public int moveHeroKey(char key,LabirintoDraw labirinto,Heroi hero)
 {
+	boolean alldead=false;
+	int counter=0;
+	for (int i=0;i<labirinto.drakes.size();i++)
+	{
+		if(labirinto.drakes.get(i).estado=="morto")
+		{
+			counter++;
+		}
+		
+	}
+	if (counter==labirinto.drakes.size())
+	{
+		alldead=true;
+	}
 	if( key=='w'&& (labirinto.lab[hero.y-1][hero.x]==' '||labirinto.lab[hero.y-1][hero.x]=='E'))
 	{
 		
@@ -100,7 +102,31 @@ public int moveHeroKey(char key,LabirintoDraw labirinto,Dragao drake,Heroi hero)
 		hero.x=hero.x+1;
 		return 4;
 	}
-	if( key=='d' && labirinto.lab[hero.y][hero.x+1]=='S' && drake.estado=="morto")
+	if( key=='d' && labirinto.lab[hero.y][hero.x+1]=='S' && alldead==true )
+	{
+		labirinto.lab[hero.y][hero.x]=' ';
+		hero.x=hero.x+1;
+		ganhaste=1;
+		System.out.println("::::YOU WIN::::");
+		System.exit(0);
+	}
+	if( key=='a' && labirinto.lab[hero.y][hero.x-1]=='S' && alldead==true )
+	{
+		labirinto.lab[hero.y][hero.x]=' ';
+		hero.x=hero.x+1;
+		ganhaste=1;
+		System.out.println("::::YOU WIN::::");
+		System.exit(0);
+	}
+	if( key=='s' && labirinto.lab[hero.y+1][hero.x]=='S' && alldead==true )
+	{
+		labirinto.lab[hero.y][hero.x]=' ';
+		hero.x=hero.x+1;
+		ganhaste=1;
+		System.out.println("::::YOU WIN::::");
+		System.exit(0);
+	}
+	if( key=='w' && labirinto.lab[hero.y-1][hero.x]=='S' && alldead==true )
 	{
 		labirinto.lab[hero.y][hero.x]=' ';
 		hero.x=hero.x+1;

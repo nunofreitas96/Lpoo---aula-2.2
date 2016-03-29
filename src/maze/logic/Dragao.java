@@ -87,6 +87,10 @@ public class Dragao {
 				temEspada=false;
 				return 0;
 			}
+			if(labirinto.lab[y-1][x]=='E')
+			{
+				apanhaEspada();
+			}
 			labirinto.lab[y][x]=' ';
 			y=y-1;
 			return 0;
@@ -94,6 +98,14 @@ public class Dragao {
 		if( n==2 && (labirinto.lab[y+1][x]==' '||labirinto.lab[y+1][x]=='E'))
 		{
 			labirinto.lab[y][x]=' ';
+			if(temEspada==true&&estado=="acordado")
+			{
+				carater='D';
+				labirinto.lab[y][x]='E';
+				y=y+1;
+				temEspada=false;
+				return 0;
+			}
 			if(labirinto.lab[y+1][x]=='E')
 			{
 				apanhaEspada();

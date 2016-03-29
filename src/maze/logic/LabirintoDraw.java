@@ -1,5 +1,6 @@
 package maze.logic;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.Random;
 
@@ -9,7 +10,7 @@ public int sizex=7;
 public int sizey=7;
 Deque<Integer> stackVisitsx = new ArrayDeque<Integer>();
 Deque<Integer> stackVisitsy = new ArrayDeque<Integer>();
-Dragao[] drakes;
+public ArrayList<Dragao> drakes = new ArrayList<Dragao>();
 public char[][] lab; /*=   {{'X','X','X','X','X','X','X','X', 'X','X'},
 				{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
 				{'X',' ','X','X',' ','X',' ','X',' ','X'},
@@ -301,15 +302,58 @@ public void makeDragons(int n){
 		 int y;
 		 x= rnd.nextInt(sizex-1)+1;
 		 y= rnd.nextInt(sizey-1)+1;
-		 if(lab[x][y] == ' '){
+		 if(lab[y][x] == ' '){
 			 Dragao Drake = new Dragao(x,y);
-			 lab[x][y] = 'D';
+			 lab[y][x] = 'D';
+			 drakes.add(Drake);
 			 ncheck++;
 		 }
 		 
 		 
 	}
 }
+
+public Heroi makeHero(){
+	int ncheck =0;
+	while(ncheck < 1){
+		 Random rnd = new Random();
+		 int x;
+		 int y;
+		 x= rnd.nextInt(sizex-1)+1;
+		 y= rnd.nextInt(sizey-1)+1;
+		 if(lab[y][x] == ' ' && lab[y][x] != 'D'&& lab[y-1][x] != 'D' && lab[y][x+1] != 'D' && lab[y][x-1] != 'D')
+		 {
+			 Heroi hero = new Heroi();
+			 hero.x=x;
+			 hero.y=y;
+			 lab[y][x] = hero.carater;
+			 ncheck++;
+			 return hero;
+		 }
+	}
+	return null;
+	
+}
+
+public void makeEspada(){
+	int ncheck =0;
+	while(ncheck < 1){
+		 Random rnd = new Random();
+		 int x;
+		 int y;
+		 x= rnd.nextInt(sizex-1)+1;
+		 y= rnd.nextInt(sizey-1)+1;
+		 if (lab[x][y] == ' ' )
+		 {
+			
+			 lab[x][y] = 'E';
+			 ncheck++;
+			 return;
+		 }
+	}
+	return;
+}
+	
 
 public void checkdeath(Dragao drake,Heroi heroi, LabirintoDraw labirinto)
 {
