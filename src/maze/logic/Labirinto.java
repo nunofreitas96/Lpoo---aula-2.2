@@ -33,7 +33,11 @@ public class Labirinto {
 		labirinto.MazeBuilder();
 		int[] exit = labirinto.SearchExit();
 		labirinto.MakeWay(exit[1],exit[0]);
+		
+		labirinto.makeDragons(2);
 		labirinto.LabirintoDesenho();
+		
+		
 		
     }
 

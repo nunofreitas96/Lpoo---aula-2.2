@@ -9,6 +9,7 @@ public int sizex=7;
 public int sizey=7;
 Deque<Integer> stackVisitsx = new ArrayDeque<Integer>();
 Deque<Integer> stackVisitsy = new ArrayDeque<Integer>();
+Dragao[] drakes;
 public char[][] lab; /*=   {{'X','X','X','X','X','X','X','X', 'X','X'},
 				{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
 				{'X',' ','X','X',' ','X',' ','X',' ','X'},
@@ -290,6 +291,24 @@ for(int i=0;i<sizey;i++)
 	}
 }
 
+}
+
+public void makeDragons(int n){
+	int ncheck =0;
+	while(ncheck < n){
+		 Random rnd = new Random();
+		 int x;
+		 int y;
+		 x= rnd.nextInt(sizex-1)+1;
+		 y= rnd.nextInt(sizey-1)+1;
+		 if(lab[x][y] == ' '){
+			 Dragao Drake = new Dragao(x,y);
+			 lab[x][y] = 'D';
+			 ncheck++;
+		 }
+		 
+		 
+	}
 }
 
 public void checkdeath(Dragao drake,Heroi heroi, LabirintoDraw labirinto)

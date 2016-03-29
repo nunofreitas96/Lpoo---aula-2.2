@@ -16,6 +16,14 @@ public class Dragao {
 		y=3;
 		temEspada=false;
 	}
+	public Dragao(int x, int y){
+		carater='D';
+		estado="acordado";
+		this.x = x;
+		this.y = y;
+		temEspada=false;
+		
+	}
 	
 	public void dragaoMorre()
 	{
