@@ -114,14 +114,38 @@ public class Dragao {
 			y=y+1;
 			return 0;
 		}
-		if( (n==3||n==5 )&& labirinto.lab[y][x-1]==' ')
+		if( (n==3||n==5 )&& (labirinto.lab[y][x-1]==' '||labirinto.lab[y][x-1]=='E'))
 		{
+			if(temEspada==true&&estado=="acordado")
+			{
+				carater='D';
+				labirinto.lab[y][x]='E';
+				x=x-1;
+				temEspada=false;
+				return 0;
+			}
+			if(labirinto.lab[y][x-1]=='E')
+			{
+				apanhaEspada();
+			}
 			labirinto.lab[y][x]=' ';
 			x=x-1;
 			return 0;
 		}
-		if( (n==4||n==6) && labirinto.lab[y][x+1]==' ')
+		if( (n==4||n==6) && (labirinto.lab[y][x+1]==' '||labirinto.lab[y][x+1]=='E'))
 		{
+			if(temEspada==true&&estado=="acordado")
+			{
+				carater='D';
+				labirinto.lab[y][x]='E';
+				x=x+1;
+				temEspada=false;
+				return 0;
+			}
+			if(labirinto.lab[y][x+1]=='E')
+			{
+				apanhaEspada();
+			}
 			labirinto.lab[y][x]=' ';
 			x=x+1;
 			return 0;

@@ -11,7 +11,7 @@ public int ganhaste = 0;
 		
 	}
 	
-	public void readMode(){
+	/*public void readMode(){
 		int j;
 		int k;
 		Scanner reader = new Scanner(System.in);
@@ -32,13 +32,11 @@ public int ganhaste = 0;
 		if(k==3)
 		Labirinto.AdorDragao();
 	}
-	
- public  void moveHeroi(LabirintoDraw labirinto,Heroi hero)
+	*/
+ public  void moveHeroi(LabirintoDraw labirinto,Heroi hero, char key)
 	{
 		
-		Scanner reader = new Scanner(System.in);
-		System.out.print("Insira key: ");
-		char key = reader.nextLine().charAt(0);
+		
 		moveHeroKey(key,labirinto,hero);
 
 	}

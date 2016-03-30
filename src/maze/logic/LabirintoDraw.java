@@ -23,8 +23,10 @@ public char[][] lab; /*=   {{'X','X','X','X','X','X','X','X', 'X','X'},
 				{'X','E','X','X',' ',' ',' ',' ',' ','X'},
 				{'X','X','X','X','X','X','X','X','X','X'}};	*/
 	
-public LabirintoDraw(){
+public LabirintoDraw(int sizex,int sizey){
 	gameover=false;
+	this.sizex=sizex;
+	this.sizey=sizey;
 };
 
 
@@ -32,12 +34,12 @@ public LabirintoDraw(){
 
 public char[][] MazeBuilder()
 {
-	char[][]maze = new char[Labirinto.sizey][Labirinto.sizex];
-	//encher de X's as posi�oes pares
+	char[][]maze = new char[sizey][sizex];
+	//encher de X's as pares
 	
-	for (int i =0; i<Labirinto.sizey; i++)
+	for (int i =0; i<sizey; i++)
 		{
-			for(int j=0; j<Labirinto.sizex;j++)
+			for(int j=0; j<sizex;j++)
 			{
 				if (i % 2 != 0 && j % 2 != 0)
 					maze[i][j] = ' ';
@@ -56,9 +58,9 @@ public int[] SearchExit(){
 	Random generator= new Random();
 	int x =0;
 	int y =0;
-	while(x != 1 && x!= (Labirinto.sizex-1)/2 && y != 1 && y != (Labirinto.sizey-1)/2){
-		x= generator.nextInt((Labirinto.sizex-1)/2)+1;
-		y= generator.nextInt((Labirinto.sizey-1)/2)+1;
+	while(x != 1 && x!= (sizex-1)/2 && y != 1 && y != (sizey-1)/2){
+		x= generator.nextInt((sizex-1)/2)+1;
+		y= generator.nextInt((sizey-1)/2)+1;
 	}
 	if (x==1&&y==1)
 	{
@@ -68,42 +70,42 @@ public int[] SearchExit(){
 		else
 		{lab[0][1] = 'S';}
 	}
-	else if (x==1 && y ==(Labirinto.sizey-1)/2) 
+	else if (x==1 && y ==(sizey-1)/2) 
 	{
 		int n= generator.nextInt(2);
 		if (n == 0)
-		{lab[Labirinto.sizey-2][0] = 'S';}
+		{lab[sizey-2][0] = 'S';}
 		else
-		{lab[Labirinto.sizey-1][1] = 'S';}
+		{lab[sizey-1][1] = 'S';}
 	}
-	else if (x==(Labirinto.sizex-1)/2 && y==1)
+	else if (x==(sizex-1)/2 && y==1)
 	{
 		int n= generator.nextInt(2);
 		if (n == 0)
-		{lab[0][Labirinto.sizex-2] = 'S';}
+		{lab[0][sizex-2] = 'S';}
 		else
-		{lab[1][Labirinto.sizex-1] = 'S';}
+		{lab[1][sizex-1] = 'S';}
 	}
-	else if (x==(Labirinto.sizex-1)/2 && y==(Labirinto.sizey-1)/2)
+	else if (x==(sizex-1)/2 && y==(sizey-1)/2)
 	{
 		int n= generator.nextInt(2);
 		if (n == 0)
-		{lab[Labirinto.sizey-1][Labirinto.sizex-2] = 'S';}
+		{lab[sizey-1][sizex-2] = 'S';}
 		else
-		{lab[Labirinto.sizey-2][Labirinto.sizex-1] = 'S';}
+		{lab[sizey-2][sizex-1] = 'S';}
 	}
 	else if(x == 1){
 		lab[y*2-1][0] = 'S';
 		
 	}
-	else if(x == (Labirinto.sizex-1)/2){
-		lab[y*2-1][Labirinto.sizex-1] = 'S';
+	else if(x == (sizex-1)/2){
+		lab[y*2-1][sizex-1] = 'S';
 	}
 	else if(y ==1){
 		lab[0][x*2-1] = 'S';
 	}
-	else if(y ==(Labirinto.sizey-1)/2){
-		lab[Labirinto.sizey-1][x*2-1] = 'S';
+	else if(y ==(sizey-1)/2){
+		lab[sizey-1][x*2-1] = 'S';
 	}
 	
 	
@@ -255,9 +257,9 @@ public char[][]MakeWay(int x1, int y1){
 
 public char[][] FillVisited(){
 	
-	char[][]visited = new char[(Labirinto.sizey-1)/2 ][(Labirinto.sizex-1)/2];
-	for(int j =0; j < (Labirinto.sizey-1)/2 ; j++){
-		for(int i=0; i < (Labirinto.sizex-1)/2; i++){
+	char[][]visited = new char[(sizey-1)/2 ][(sizex-1)/2];
+	for(int j =0; j < (sizey-1)/2 ; j++){
+		for(int i=0; i < (sizex-1)/2; i++){
 			visited[j][i] = '.';
 		}
 	}
@@ -266,8 +268,8 @@ public char[][] FillVisited(){
 
 public boolean CheckVisited(char[][] visited){
 	
-	for(int j=0; j < (Labirinto.sizey-1)/2; j++){
-		for(int i =0; i < (Labirinto.sizex-1)/2; i++){
+	for(int j=0; j < (sizey-1)/2; j++){
+		for(int i =0; i < (sizex-1)/2; i++){
 			if(visited[j][i] == '.'){
 				return false;
 			}
@@ -282,13 +284,13 @@ public void LabirintoDesenho()
 {
 
 
-for(int i=0;i<Labirinto.sizey;i++)
+for(int i=0;i<sizey;i++)
 {
-	for (int j=0;j<Labirinto.sizex;j++)
+	for (int j=0;j<sizex;j++)
 	{
 
 		System.out.print(lab[i][j]+" ");
-		if(j==Labirinto.sizex-1)
+		if(j==sizex-1)
 		{System.out.print('\n');}
 	}
 }
@@ -301,8 +303,8 @@ public void makeDragons(int n){
 		 Random rnd = new Random();
 		 int x;
 		 int y;
-		 x= rnd.nextInt(Labirinto.sizex-1)+1;
-		 y= rnd.nextInt(Labirinto.sizey-1)+1;
+		 x= rnd.nextInt(sizex-1)+1;
+		 y= rnd.nextInt(sizey-1)+1;
 		 if(lab[y][x] == ' '){
 			 Dragao Drake = new Dragao(x,y);
 			 lab[y][x] = 'D';
@@ -320,8 +322,8 @@ public Heroi makeHero(){
 		 Random rnd = new Random();
 		 int x;
 		 int y;
-		 x= rnd.nextInt(Labirinto.sizex-1)+1;
-		 y= rnd.nextInt(Labirinto.sizey-1)+1;
+		 x= rnd.nextInt(sizex-1)+1;
+		 y= rnd.nextInt(sizey-1)+1;
 		 if(lab[y][x] == ' ' && lab[y][x] != 'D'&& lab[y-1][x] != 'D' && lab[y][x+1] != 'D' && lab[y][x-1] != 'D')
 		 {
 			 Heroi hero = new Heroi();
@@ -342,8 +344,8 @@ public void makeEspada(){
 		 Random rnd = new Random();
 		 int x;
 		 int y;
-		 x= rnd.nextInt(Labirinto.sizex-1)+1;
-		 y= rnd.nextInt(Labirinto.sizey-1)+1;
+		 x= rnd.nextInt(sizex-1)+1;
+		 y= rnd.nextInt(sizey-1)+1;
 		 if (lab[x][y] == ' ' )
 		 {
 			
@@ -355,6 +357,21 @@ public void makeEspada(){
 	return;
 }
 	
+public String mazeToString()
+{
+String maze="";
+	for(int i=0;i<sizey;i++)
+	{
+		for (int j=0;j<sizex;j++)
+		{
+
+			maze= maze+lab[i][j]+" ";
+			if(j==sizex-1)
+			{maze= maze+'\n';}
+		}
+	}
+return maze;
+}
 
 public void checkdeath(Dragao drake,Heroi heroi, LabirintoDraw labirinto)
 {
@@ -362,7 +379,7 @@ public void checkdeath(Dragao drake,Heroi heroi, LabirintoDraw labirinto)
 	{
 	if ((((drake.x+1)==heroi.x&&drake.y==heroi.y)||((drake.x-1)==heroi.x&&drake.y==heroi.y)||((drake.y-1)==heroi.y&&drake.x==heroi.x)||((drake.y+1)==heroi.y&&drake.x==heroi.x))&&heroi.armado==false&&drake.estado=="acordado")
 	{
-		gameover=true;
+	gameover=true;
 	
 	}
 	

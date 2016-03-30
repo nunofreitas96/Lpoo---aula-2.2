@@ -4,10 +4,13 @@ import java.util.Scanner;
 import maze.cli.CommandLine;
 
 public class Labirinto {
-public static int ndrakes=2;
-public static int sizex=11;
-public static int sizey=11;
-public static int modo=2;
+public int ndrakes=2;
+public int sizex=11;
+public int sizey=11;
+public int modo=2;
+public  LabirintoDraw lab;
+public  Heroi heroi;
+public  CommandLine cli;
 /*	public static void main(String[] args) 
 	{
 		
@@ -39,42 +42,36 @@ public static int modo=2;
     }
 */
 	
-public static void Parado()
+public  void inicialize()
 {
-	int k=1;
-	LabirintoDraw labirinto= new LabirintoDraw();
-	labirinto.MazeBuilder();
-	int[] exit = labirinto.SearchExit();
-	labirinto.MakeWay(exit[1],exit[0]);
-	labirinto.makeDragons(ndrakes);
-	Heroi heroi= labirinto.makeHero();
+	lab= new LabirintoDraw(sizex,sizey);
+	cli= new CommandLine();
+	lab.MazeBuilder();
+	int[] exit = lab.SearchExit();
+	lab.MakeWay(exit[1],exit[0]);
+	lab.makeDragons(ndrakes);
+	heroi= lab.makeHero();
 	System.out.println(heroi.x + " " + heroi.y );
-	labirinto.makeEspada();
-	labirinto.LabirintoDesenho();
-	CommandLine cli = new CommandLine();
-	while(k==1)
-	{
-	cli.moveHeroi(labirinto,heroi);
+	lab.makeEspada();
+	lab.LabirintoDesenho();
+}
+public void JogadaParado(char key)
+{
+	cli.moveHeroi(lab,heroi,key);
 	System.out.println(heroi.x + " " + heroi.y );
-	labirinto.lab[heroi.y][heroi.x]=heroi.carater;
-	labirinto.LabirintoDesenho();
-	for(int i=0; i < labirinto.drakes.size(); i++)
+	lab.lab[heroi.y][heroi.x]=heroi.carater;
+	lab.LabirintoDesenho();
+	
+	for(int i=0; i < lab.drakes.size(); i++)
 	{
-	labirinto.checkdeath(labirinto.drakes.get(i),heroi,labirinto);
-	}
-	if (labirinto.gameover==true)
-	{
-	 System.out.println(":::GAME_OVER:::");
-	 System.exit(0);
-	}
+	lab.checkdeath(lab.drakes.get(i),heroi,lab);
 	}
 }
-
 	
-public static void MovDragao()
+public  void JogadaMovimento(char key)
 {
-	int k=1;
-	LabirintoDraw labirinto= new LabirintoDraw();
+	/*int k=1;
+	LabirintoDraw labirinto= new LabirintoDraw(sizex,sizey);
 	labirinto.MazeBuilder();
 	int[] exit = labirinto.SearchExit();
 	labirinto.MakeWay(exit[1],exit[0]);
@@ -82,85 +79,54 @@ public static void MovDragao()
 	Heroi heroi= labirinto.makeHero();
 	labirinto.makeEspada();
 	labirinto.LabirintoDesenho();
+	lab=labirinto;
 	CommandLine cli = new CommandLine();
 	while(k==1)
+	{*/
+	cli.moveHeroi(lab,heroi,key);
+	lab.lab[heroi.y][heroi.x]=heroi.carater;
+	for(int i=0; i < lab.drakes.size(); i++)
 	{
-	
-	labirinto.lab[heroi.y][heroi.x]=heroi.carater;
-	for(int i=0; i < labirinto.drakes.size(); i++)
-	{
-	labirinto.checkdeath(labirinto.drakes.get(i),heroi,labirinto);
+	lab.checkdeath(lab.drakes.get(i),heroi,lab);
 	}
-	for(int i=0; i < labirinto.drakes.size(); i++)
+	for(int i=0; i < lab.drakes.size(); i++)
 	{
-	labirinto.drakes.get(i).moveDragao(labirinto);
-	labirinto.lab[labirinto.drakes.get(i).y][labirinto.drakes.get(i).x]=labirinto.drakes.get(i).carater;
+	lab.drakes.get(i).moveDragao(lab);
+	lab.lab[lab.drakes.get(i).y][lab.drakes.get(i).x]=lab.drakes.get(i).carater;
 	}
-	cli.moveHeroi(labirinto,heroi);
-	labirinto.lab[heroi.y][heroi.x]=heroi.carater;
-	labirinto.LabirintoDesenho();
-	for(int i=0; i < labirinto.drakes.size(); i++)
+	lab.lab[heroi.y][heroi.x]=heroi.carater;
+	lab.LabirintoDesenho();
+	for(int i=0; i < lab.drakes.size(); i++)
 	{
-	labirinto.checkdeath(labirinto.drakes.get(i),heroi,labirinto);
+	lab.checkdeath(lab.drakes.get(i),heroi,lab);
 	}	
-	if (labirinto.gameover==true)
-	{System.out.println(":::GAME_OVER:::");
-	 System.exit(0);
-	}
-	}
+	
+	
 }
 
 
-public static void AdorDragao()
+public  void JogadaDormir(char key)
 {
-	int k=1;
-	LabirintoDraw labirinto= new LabirintoDraw();
-	labirinto.MazeBuilder();
-	int[] exit = labirinto.SearchExit();
-	labirinto.MakeWay(exit[1],exit[0]);
-	labirinto.makeDragons(ndrakes);
-	Heroi heroi= labirinto.makeHero();
-	labirinto.makeEspada();
-	labirinto.LabirintoDesenho();
-	CommandLine cli = new CommandLine();
-	while(k==1)
+	cli.moveHeroi(lab,heroi,key);
+	lab.lab[heroi.y][heroi.x]=heroi.carater;
+	for(int i=0; i < lab.drakes.size(); i++)
 	{
-	labirinto.lab[heroi.y][heroi.x]=heroi.carater;
-	for(int i=0; i < labirinto.drakes.size(); i++)
-	{
-	labirinto.checkdeath(labirinto.drakes.get(i),heroi,labirinto);
+	lab.checkdeath(lab.drakes.get(i),heroi,lab);
 	}
-	for(int i=0; i < labirinto.drakes.size(); i++)
+	for(int i=0; i < lab.drakes.size(); i++)
 	{
-	labirinto.drakes.get(i).adacDragao();
-	labirinto.drakes.get(i).moveDragao(labirinto);
-	labirinto.lab[labirinto.drakes.get(i).y][labirinto.drakes.get(i).x]=labirinto.drakes.get(i).carater;
+	lab.drakes.get(i).adacDragao();
+	lab.drakes.get(i).moveDragao(lab);
+	lab.lab[lab.drakes.get(i).y][lab.drakes.get(i).x]=lab.drakes.get(i).carater;
 	}
-	cli.moveHeroi(labirinto,heroi);
-	labirinto.lab[heroi.y][heroi.x]=heroi.carater;
-	labirinto.LabirintoDesenho();
-	for(int i=0; i < labirinto.drakes.size(); i++)
+	lab.lab[heroi.y][heroi.x]=heroi.carater;
+	lab.LabirintoDesenho();
+	for(int i=0; i < lab.drakes.size(); i++)
 	{
-	labirinto.checkdeath(labirinto.drakes.get(i),heroi,labirinto);
+	lab.checkdeath(lab.drakes.get(i),heroi,lab);
 	}	
-	if (labirinto.gameover==true)
-	{System.out.println(":::GAME_OVER:::");
-	 System.exit(0);
-	}
-	}
-}
-
-
-public void quasemain() {
 	
-	if (modo==1)
-	{Parado();}
-	if (modo==2)
-	{MovDragao();}
-	if (modo==3)
-	{AdorDragao();}
-	
-}
+	}
 }
 
 
