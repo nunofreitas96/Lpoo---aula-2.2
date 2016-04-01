@@ -13,6 +13,8 @@ import maze.logic.*;
 import maze.cli.*;
 import javax.swing.SwingConstants;
 import java.awt.Component;
+import java.awt.Dimension;
+
 import javax.swing.Box;
 import javax.swing.JTextField;
 import javax.swing.DefaultComboBoxModel;
@@ -33,6 +35,7 @@ public class InterfaceGraf {
 	private JButton btnNewButton_8;
 	private JButton btnNewButton_7;
 	private JButton btnNewButton_6;
+	private JFrame frmGraphicsDemo;
 	/**
 	 * Launch the application.
 	 */
@@ -65,8 +68,21 @@ public class InterfaceGraf {
 		frmAmazeing.setTitle("aMAZEing");
 		frmAmazeing.setBounds(100, 100, 700, 500 );
 		frmAmazeing.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmAmazeing.getContentPane().setLayout(null);
+	/*	frmGraphicsDemo = new JFrame();
+		frmGraphicsDemo.setTitle("Graphics Demo");
+		frmGraphicsDemo.setBounds(100, 100, 450, 300);
+		frmGraphicsDemo.setPreferredSize(new Dimension(450, 300));
+		frmGraphicsDemo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		GraphicsDemoPanel panel = new GraphicsDemoPanel();
+		frmGraphicsDemo.getContentPane().add(panel);
+
+		frmGraphicsDemo.pack();
 		
+		frmGraphicsDemo.setVisible(true);
+		
+		panel.requestFocus();*/
+
+		frmAmazeing.getContentPane().setLayout(null);
 		JLabel lblDimensaoDoLabirinto = new JLabel("Dimensao do Labirinto");
 		lblDimensaoDoLabirinto.setBounds(29, 36, 134, 14);
 		frmAmazeing.getContentPane().add(lblDimensaoDoLabirinto);
@@ -468,6 +484,20 @@ public class InterfaceGraf {
 				labirinto.inicialize();
 				lab=labirinto;
 				created=true;
+				frmGraphicsDemo = new JFrame();
+				frmGraphicsDemo.setTitle("Graphics Demo");
+				frmGraphicsDemo.setBounds(100, 100, 450, 300);
+				frmGraphicsDemo.setPreferredSize(new Dimension(450, 300));
+				frmGraphicsDemo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				GraphicsDemoPanel panel = new GraphicsDemoPanel();
+				panel.labirinto=lab;
+				frmGraphicsDemo.getContentPane().add(panel);
+				
+				frmGraphicsDemo.pack();
+				
+				frmGraphicsDemo.setVisible(true);
+				
+				panel.requestFocus();
 				btnNewButton_9.setEnabled(true);
 				btnNewButton_8.setEnabled(true);
 				btnNewButton_7.setEnabled(true);
