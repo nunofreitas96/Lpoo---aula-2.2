@@ -105,32 +105,27 @@ public int moveHeroKey(char key,LabirintoDraw labirinto,Heroi hero)
 		labirinto.lab[hero.y][hero.x]=' ';
 		hero.x=hero.x+1;
 		ganhaste=1;
-		System.out.println("::::YOU WIN::::");
-		System.exit(0);
+		
 	}
 	if( key=='a' && labirinto.lab[hero.y][hero.x-1]=='S' && alldead==true )
 	{
 		labirinto.lab[hero.y][hero.x]=' ';
 		hero.x=hero.x+1;
 		ganhaste=1;
-		System.out.println("::::YOU WIN::::");
-		System.exit(0);
+		
 	}
 	if( key=='s' && labirinto.lab[hero.y+1][hero.x]=='S' && alldead==true )
 	{
 		labirinto.lab[hero.y][hero.x]=' ';
 		hero.x=hero.x+1;
 		ganhaste=1;
-		System.out.println("::::YOU WIN::::");
-		System.exit(0);
 	}
 	if( key=='w' && labirinto.lab[hero.y-1][hero.x]=='S' && alldead==true )
 	{
 		labirinto.lab[hero.y][hero.x]=' ';
 		hero.x=hero.x+1;
 		ganhaste=1;
-		System.out.println("::::YOU WIN::::");
-		System.exit(0);
+
 	}
 	return 0;
 }

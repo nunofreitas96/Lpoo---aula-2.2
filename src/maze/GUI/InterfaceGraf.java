@@ -97,7 +97,7 @@ public class InterfaceGraf {
 			public void propertyChange(PropertyChangeEvent arg0) {
 			}
 		});
-		Descricao.setBounds(29, 446, 153, 14);
+		Descricao.setBounds(29, 446, 346, 14);
 		frmAmazeing.getContentPane().add(Descricao);
 		
 		btnNewButton_9 = new JButton("LEFT");
@@ -108,6 +108,15 @@ public class InterfaceGraf {
 				{
 					lab.JogadaParado('a');
 					textArea.setText(lab.lab.mazeToString());
+					if(lab.cli.ganhaste==1)
+					{
+						textArea.setText("YOU WIN");
+						Descricao.setText("Parabens!!!");
+						btnNewButton_9.setEnabled(false);
+						btnNewButton_8.setEnabled(false);
+						btnNewButton_7.setEnabled(false);
+						btnNewButton_6.setEnabled(false);
+					}
 					if (lab.lab.gameover==true)
 					{
 						textArea.setText("YOU LOSE");
@@ -123,6 +132,15 @@ public class InterfaceGraf {
 				{
 					lab.JogadaMovimento('a');
 					textArea.setText(lab.lab.mazeToString());
+					if(lab.cli.ganhaste==1)
+					{
+						textArea.setText("YOU WIN");
+						Descricao.setText("Parabens!!!");
+						btnNewButton_9.setEnabled(false);
+						btnNewButton_8.setEnabled(false);
+						btnNewButton_7.setEnabled(false);
+						btnNewButton_6.setEnabled(false);
+					}
 					if (lab.lab.gameover==true)
 					{
 						textArea.setText("YOU LOSE");
@@ -137,6 +155,15 @@ public class InterfaceGraf {
 				{
 					lab.JogadaDormir('a');
 					textArea.setText(lab.lab.mazeToString());
+					if(lab.cli.ganhaste==1)
+					{
+						textArea.setText("YOU WIN");
+						Descricao.setText("Parabens!!!");
+						btnNewButton_9.setEnabled(false);
+						btnNewButton_8.setEnabled(false);
+						btnNewButton_7.setEnabled(false);
+						btnNewButton_6.setEnabled(false);
+					}
 					if (lab.lab.gameover==true)
 					{
 						textArea.setText("YOU LOSE");
@@ -158,6 +185,15 @@ public class InterfaceGraf {
 				{
 					lab.JogadaParado('w');
 					textArea.setText(lab.lab.mazeToString());
+					if(lab.cli.ganhaste==1)
+					{
+						textArea.setText("YOU WIN");
+						Descricao.setText("Parabens!!!");
+						btnNewButton_9.setEnabled(false);
+						btnNewButton_8.setEnabled(false);
+						btnNewButton_7.setEnabled(false);
+						btnNewButton_6.setEnabled(false);
+					}
 					if (lab.lab.gameover==true)
 					{
 						textArea.setText("YOU LOSE");
@@ -173,6 +209,15 @@ public class InterfaceGraf {
 				{
 					lab.JogadaMovimento('w');
 					textArea.setText(lab.lab.mazeToString());
+					if(lab.cli.ganhaste==1)
+					{
+						textArea.setText("YOU WIN");
+						Descricao.setText("Parabens!!!");
+						btnNewButton_9.setEnabled(false);
+						btnNewButton_8.setEnabled(false);
+						btnNewButton_7.setEnabled(false);
+						btnNewButton_6.setEnabled(false);
+					}
 					if (lab.lab.gameover==true)
 					{
 						textArea.setText("YOU LOSE");
@@ -187,6 +232,15 @@ public class InterfaceGraf {
 				{
 					lab.JogadaDormir('w');
 					textArea.setText(lab.lab.mazeToString());
+					if(lab.cli.ganhaste==1)
+					{
+						textArea.setText("YOU WIN");
+						Descricao.setText("Parabens!!!");
+						btnNewButton_9.setEnabled(false);
+						btnNewButton_8.setEnabled(false);
+						btnNewButton_7.setEnabled(false);
+						btnNewButton_6.setEnabled(false);
+					}
 					if (lab.lab.gameover==true)
 					{
 						textArea.setText("YOU LOSE");
@@ -210,6 +264,15 @@ public class InterfaceGraf {
 				{
 					lab.JogadaParado('s');
 					textArea.setText(lab.lab.mazeToString());
+					if(lab.cli.ganhaste==1)
+					{
+						textArea.setText("YOU WIN");
+						Descricao.setText("Parabens!!!");
+						btnNewButton_9.setEnabled(false);
+						btnNewButton_8.setEnabled(false);
+						btnNewButton_7.setEnabled(false);
+						btnNewButton_6.setEnabled(false);
+					}
 					if (lab.lab.gameover==true)
 					{
 						textArea.setText("YOU LOSE");
@@ -225,6 +288,15 @@ public class InterfaceGraf {
 				{
 					lab.JogadaMovimento('s');
 					textArea.setText(lab.lab.mazeToString());
+					if(lab.cli.ganhaste==1)
+					{
+						textArea.setText("YOU WIN");
+						Descricao.setText("Parabens!!!");
+						btnNewButton_9.setEnabled(false);
+						btnNewButton_8.setEnabled(false);
+						btnNewButton_7.setEnabled(false);
+						btnNewButton_6.setEnabled(false);
+					}
 					if (lab.lab.gameover==true)
 					{
 						textArea.setText("YOU LOSE");
@@ -239,6 +311,16 @@ public class InterfaceGraf {
 				{
 					lab.JogadaDormir('s');
 					textArea.setText(lab.lab.mazeToString());
+					if(lab.cli.ganhaste==1)
+					{
+						textArea.setText("YOU WIN");
+						Descricao.setText("Parabens!!!");
+						btnNewButton_9.setEnabled(false);
+						btnNewButton_8.setEnabled(false);
+						btnNewButton_7.setEnabled(false);
+						btnNewButton_6.setEnabled(false);
+					}
+				
 					if (lab.lab.gameover==true)
 					{
 						textArea.setText("YOU LOSE");
@@ -262,6 +344,15 @@ public class InterfaceGraf {
 				{
 					lab.JogadaParado('d');
 					textArea.setText(lab.lab.mazeToString());
+					if(lab.cli.ganhaste==1)
+					{
+						textArea.setText("YOU WIN");
+						Descricao.setText("Parabens!!!");
+						btnNewButton_9.setEnabled(false);
+						btnNewButton_8.setEnabled(false);
+						btnNewButton_7.setEnabled(false);
+						btnNewButton_6.setEnabled(false);
+					}
 					if (lab.lab.gameover==true)
 					{
 						textArea.setText("YOU LOSE");
@@ -277,6 +368,15 @@ public class InterfaceGraf {
 				{
 					lab.JogadaMovimento('d');
 					textArea.setText(lab.lab.mazeToString());
+					if(lab.cli.ganhaste==1)
+					{
+						textArea.setText("YOU WIN");
+						Descricao.setText("Parabens!!!");
+						btnNewButton_9.setEnabled(false);
+						btnNewButton_8.setEnabled(false);
+						btnNewButton_7.setEnabled(false);
+						btnNewButton_6.setEnabled(false);
+					}
 					if (lab.lab.gameover==true)
 					{
 						textArea.setText("YOU LOSE");
@@ -291,6 +391,15 @@ public class InterfaceGraf {
 				{
 					lab.JogadaDormir('d');
 					textArea.setText(lab.lab.mazeToString());
+					if(lab.cli.ganhaste==1)
+					{
+						textArea.setText("YOU WIN");
+						Descricao.setText("Parabens!!!");
+						btnNewButton_9.setEnabled(false);
+						btnNewButton_8.setEnabled(false);
+						btnNewButton_7.setEnabled(false);
+						btnNewButton_6.setEnabled(false);
+					}
 					if (lab.lab.gameover==true)
 					{
 						textArea.setText("YOU LOSE");
@@ -327,8 +436,24 @@ public class InterfaceGraf {
 				int tempDimentions = Integer.parseUnsignedInt(Dimention.getText());
 				labirinto.sizex=tempDimentions;
 				labirinto.sizey=tempDimentions;
-				
+				if(tempDimentions%2==0||tempDimentions<=0 || tempNdrakes<=0 || tempNdrakes >(tempDimentions/3))
+				{
+					if(tempDimentions%2==0||tempDimentions<=0)
+					{
+					Descricao.setText("Dimensoes de Labirinto nao permitidas");
+					}
+					else if(tempNdrakes<=0 || tempNdrakes >(tempDimentions/3))
+					{
+						Descricao.setText("Numero de Dragoes nao permitido");
+					}
+					/*if((tempDimentions%2==0||tempDimentions<=0) && ( tempNdrakes<=0 || tempNdrakes >(tempDimentions/3)))
+					{
+						Descricao.setText("Ambos os campos nao permitidos");
+					}*/
+				}
+				else{
 				if(ModoDeJogo.getSelectedItem()=="Dragao Dorminhoco")
+				
 				{
 					labirinto.modo=3;
 				}
@@ -350,7 +475,7 @@ public class InterfaceGraf {
 				textArea.setText(lab.lab.mazeToString());
 				Descricao.setText("Sua vez de Jogar!");
 				}
-				
+		}
 				
 				
 		})
