@@ -34,18 +34,20 @@ public class MazeCreator extends JPanel {
 	public Labirinto labirinto = new Labirinto();
 	
 	
-	public MazeCreator(int pos, int drag){
+	public MazeCreator(int pos, int drag ){
 		labirinto.sizex = pos;
 		labirinto.sizey = pos;
 		labirinto.inicialize2();
 		
+		this.setLayout(null);
 		JComboBox<String> comboChoices = new JComboBox<String>();
 		comboChoices.addItem("Wall");
 		comboChoices.addItem("Dragons");
 		comboChoices.addItem("Hero");
 		comboChoices.addItem("Sword");
 		comboChoices.addItem("Gate");
-		this.add(comboChoices, BorderLayout.PAGE_END);
+		comboChoices.setBounds(900,10, 80, 25);
+		this.add(comboChoices);
 		
 		try {
 			brickWall =  ImageIO.read(new File("brickWall.png"));
@@ -73,18 +75,18 @@ public class MazeCreator extends JPanel {
 				tempx = x/50;
 				tempy = y/50;
 				
-				switch(status){
+				switch(comboChoices.getSelectedItem().toString()){
 				
-				case 0:
+				case "Wall":
 					if(tempx !=0 && tempy !=0 && tempx != pos && tempy != pos ){
-						labirinto.lab.lab[tempx][tempy]  ='X';
+						labirinto.lab.lab[tempy][tempx]  ='X';
 						
 					}
 				break;
-				case 1:
+				case "Hero":
 				if(tempx !=0 && tempy !=0 && tempx != pos && tempy != pos ){
 					if(nhero ==0){
-					labirinto.lab.lab[tempx][tempy]  ='H';
+					labirinto.lab.lab[tempy][tempx]  ='H';
 					nhero =1;
 						}
 					if(nhero ==1){
@@ -96,16 +98,16 @@ public class MazeCreator extends JPanel {
 							}
 						}
 						
-						
+						labirinto.lab.lab[tempy][tempx]  ='H';
 						
 					}
 					
 					}
 				break;
-				case 2:
+				case "Dragons":
 					if(tempx !=0 && tempy !=0 && tempx != pos && tempy != pos ){
 						if(ndragons < drag){
-							labirinto.lab.lab[tempx][tempy]  ='D';
+							labirinto.lab.lab[tempy][tempx]  ='D';
 							ndragons++;
 						}
 						else{
@@ -118,16 +120,16 @@ public class MazeCreator extends JPanel {
 								}
 						}
 							
-							labirinto.lab.lab[tempx][tempy]  ='D';
+							labirinto.lab.lab[tempy][tempx]  ='D';
 						
 					}
 					
 				}
 					break;
-				case 3:
+				case "Sword":
 					if(tempx !=0 && tempy !=0 && tempx != pos && tempy != pos ){
 						if(nsword ==0){
-						labirinto.lab.lab[tempx][tempy]  ='E';
+						labirinto.lab.lab[tempy][tempx]  ='E';
 						nsword =1;
 							}
 						if(nsword ==1){
@@ -139,27 +141,27 @@ public class MazeCreator extends JPanel {
 								}
 							}
 							
-							
+							labirinto.lab.lab[tempy][tempx]  ='E';
 							
 						}
 						
 						}
 					break;
-				case 4:
-					if(tempx ==0 || tempy ==0 || tempx == pos || tempy == pos ){
+				case "Gate":
+					if(tempx ==0 || tempy ==0 || tempx == pos-1 || tempy == pos-1 ){
 						if(nexits ==0){
-							labirinto.lab.lab[tempx][tempy]  ='S';
+							labirinto.lab.lab[tempy][tempx]  ='S';
 							nexits =1;
 						}
 						else{
 							for(int i = 0; i< labirinto.lab.sizex; i++){
 								for (int j = 0; j < labirinto.lab.sizey; j++){
 									if(labirinto.lab.lab[i][j] == 'S'){
-										labirinto.lab.lab[i][j] = ' ';
+										labirinto.lab.lab[i][j] = 'X';
 									}
 								}
 						}
-						
+							labirinto.lab.lab[tempy][tempx]  ='S';
 					}
 					
 				

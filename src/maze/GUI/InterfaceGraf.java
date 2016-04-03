@@ -457,7 +457,7 @@ public class InterfaceGraf {
 				frmCreate.setPreferredSize(new Dimension(1000, 1000));
 				frmCreate.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				MazeCreator panel2 = new MazeCreator(tempDimentions, possdrakes);
-				panel2.labirinto=lab;
+
 				frmCreate.getContentPane().add(panel2);
 				
 				frmCreate.pack();
