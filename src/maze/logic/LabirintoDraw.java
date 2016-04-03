@@ -266,6 +266,22 @@ public char[][] FillVisited(){
 	return visited;
 }
 
+public char[][] MazeBuilder2()
+{
+	char[][]maze = new char[sizey][sizex];
+	//encher de X's as pares
+	for(int i = 0; i < sizey ;i++){
+		maze[0][i] = 'X';
+		maze[sizex-1][i] = 'X';
+	}
+	for(int i = 0; i < sizey ;i++){
+		maze[i][0] = 'X';
+		maze[i][sizey-1] = 'X';
+	}
+	lab=maze;
+	return maze;
+}
+
 public boolean CheckVisited(char[][] visited){
 	
 	for(int j=0; j < (sizey-1)/2; j++){

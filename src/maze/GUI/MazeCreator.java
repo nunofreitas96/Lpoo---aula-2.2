@@ -1,8 +1,7 @@
 package maze.GUI;
+
+import java.awt.BorderLayout;
 import java.awt.Graphics;
-import java.awt.Window;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -10,14 +9,13 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 import maze.logic.Labirinto;
 
+public class MazeCreator extends JPanel {
 
-
-public class GraphicsDemoPanel extends JPanel {
 	private BufferedImage brickWall;
 	private BufferedImage portao;
 	private BufferedImage dragao;
@@ -26,10 +24,29 @@ public class GraphicsDemoPanel extends JPanel {
 	private BufferedImage heroiArmado;
 	private BufferedImage dragaoDormir;
 	
+	int status =0;
+	int ndragons;
+	int npos;
+	int nhero = 0;
+	int nsword = 0;
+	int nexits = 0;
 	private int x=0, y=0, width=100, height=100;
-	public Labirinto labirinto;
+	public Labirinto labirinto = new Labirinto();
 	
-	public GraphicsDemoPanel() {
+	
+	public MazeCreator(int pos, int drag){
+		labirinto.sizex = pos;
+		labirinto.sizey = pos;
+		labirinto.inicialize2();
+		
+		JComboBox<String> comboChoices = new JComboBox<String>();
+		comboChoices.addItem("Wall");
+		comboChoices.addItem("Dragons");
+		comboChoices.addItem("Hero");
+		comboChoices.addItem("Sword");
+		comboChoices.addItem("Gate");
+		this.add(comboChoices, BorderLayout.PAGE_END);
+		
 		try {
 			brickWall =  ImageIO.read(new File("brickWall.png"));
 			portao = ImageIO.read(new File("portao.png"));
@@ -38,11 +55,10 @@ public class GraphicsDemoPanel extends JPanel {
 			espada=  ImageIO.read(new File("Espada.png"));
 			heroiArmado= ImageIO.read(new File("armado.png"));
 			dragaoDormir= ImageIO.read(new File("smalld.png"));
-			  
+			 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
-
 		addMouseListener(new MouseListener(){
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -52,6 +68,103 @@ public class GraphicsDemoPanel extends JPanel {
 			public void mousePressed(MouseEvent e) {
 				x = e.getX();
 				y = e.getY();
+				int tempx;
+				int tempy;
+				tempx = x/50;
+				tempy = y/50;
+				
+				switch(status){
+				
+				case 0:
+					if(tempx !=0 && tempy !=0 && tempx != pos && tempy != pos ){
+						labirinto.lab.lab[tempx][tempy]  ='X';
+						
+					}
+				break;
+				case 1:
+				if(tempx !=0 && tempy !=0 && tempx != pos && tempy != pos ){
+					if(nhero ==0){
+					labirinto.lab.lab[tempx][tempy]  ='H';
+					nhero =1;
+						}
+					if(nhero ==1){
+						for(int i = 0; i< labirinto.lab.sizex; i++){
+							for (int j = 0; j < labirinto.lab.sizey; j++){
+								if(labirinto.lab.lab[i][j] == 'H'){
+									labirinto.lab.lab[i][j] = ' ';
+								}
+							}
+						}
+						
+						
+						
+					}
+					
+					}
+				break;
+				case 2:
+					if(tempx !=0 && tempy !=0 && tempx != pos && tempy != pos ){
+						if(ndragons < drag){
+							labirinto.lab.lab[tempx][tempy]  ='D';
+							ndragons++;
+						}
+						else{
+							for(int i = 0; i< labirinto.lab.sizex; i++){
+								for (int j = 0; j < labirinto.lab.sizey; j++){
+									if(labirinto.lab.lab[i][j] == 'D'){
+										labirinto.lab.lab[i][j] = ' ';
+										break; //Make sure it works
+									}
+								}
+						}
+							
+							labirinto.lab.lab[tempx][tempy]  ='D';
+						
+					}
+					
+				}
+					break;
+				case 3:
+					if(tempx !=0 && tempy !=0 && tempx != pos && tempy != pos ){
+						if(nsword ==0){
+						labirinto.lab.lab[tempx][tempy]  ='E';
+						nsword =1;
+							}
+						if(nsword ==1){
+							for(int i = 0; i< labirinto.lab.sizex; i++){
+								for (int j = 0; j < labirinto.lab.sizey; j++){
+									if(labirinto.lab.lab[i][j] == 'E'){
+										labirinto.lab.lab[i][j] = ' ';
+									}
+								}
+							}
+							
+							
+							
+						}
+						
+						}
+					break;
+				case 4:
+					if(tempx ==0 || tempy ==0 || tempx == pos || tempy == pos ){
+						if(nexits ==0){
+							labirinto.lab.lab[tempx][tempy]  ='S';
+							nexits =1;
+						}
+						else{
+							for(int i = 0; i< labirinto.lab.sizex; i++){
+								for (int j = 0; j < labirinto.lab.sizey; j++){
+									if(labirinto.lab.lab[i][j] == 'S'){
+										labirinto.lab.lab[i][j] = ' ';
+									}
+								}
+						}
+						
+					}
+					
+				
+				}break;
+					}
 				repaint();
 				
 			}
@@ -67,103 +180,11 @@ public class GraphicsDemoPanel extends JPanel {
 			@Override
 			public void mouseExited(MouseEvent e) {
 			}	
-		});
+		} );
 		
-		addKeyListener(new KeyListener() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				
-			}
-
-			@Override
-			public void keyPressed(KeyEvent e) {
-				//System.out.println("x=" + x);
-				switch(e.getKeyCode()){
-				case KeyEvent.VK_LEFT: 
-					if (labirinto.modo==1)
-					{
-						labirinto.JogadaParado('a');
-							
-					}
-					if (labirinto.modo==2)
-					{
-						labirinto.JogadaMovimento('a');
-					}
-					if (labirinto.modo==3)
-					{
-						labirinto.JogadaDormir('a');
-						
-					}
-					break;
-				case KeyEvent.VK_ESCAPE: 
-				{
-					Window d= SwingUtilities.getWindowAncestor(GraphicsDemoPanel.this);
-					d.setVisible(false);
-				}
-				case KeyEvent.VK_RIGHT: 
-					if (labirinto.modo==1)
-					{
-						labirinto.JogadaParado('d');
-						
-							
-					}
-					if (labirinto.modo==2)
-					{
-						labirinto.JogadaMovimento('d');
-					}
-					if (labirinto.modo==3)
-					{
-						labirinto.JogadaDormir('d');
-						
-					}
-					//System.out.println("x=" + x);
-					break;
-
-				case KeyEvent.VK_UP: 
-					if (labirinto.modo==1)
-					{
-						labirinto.JogadaParado('w');
-							
-					}
-					if (labirinto.modo==2)
-					{
-						labirinto.JogadaMovimento('w');
-					}
-					if (labirinto.modo==3)
-					{
-						labirinto.JogadaDormir('w');
-						
-					}
-					break;
-
-				case KeyEvent.VK_DOWN: 
-					if (labirinto.modo==1)
-					{
-						labirinto.JogadaParado('s');
-							
-					}
-					if (labirinto.modo==2)
-					{
-						labirinto.JogadaMovimento('s');
-					}
-					if (labirinto.modo==3)
-					{
-						labirinto.JogadaDormir('s');
-						
-					}
-					break;
-				}
-				repaint();
-
-				
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-			}			
-		});
-	}
+		
 	
+	}
 	
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -219,5 +240,7 @@ public class GraphicsDemoPanel extends JPanel {
 		}
 		
 	}
-
 }
+
+
+

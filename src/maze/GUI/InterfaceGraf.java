@@ -36,6 +36,7 @@ public class InterfaceGraf {
 	private JButton btnNewButton_7;
 	private JButton btnNewButton_6;
 	private JFrame frmGraphicsDemo;
+	private JFrame frmCreate;
 	/**
 	 * Launch the application.
 	 */
@@ -442,6 +443,35 @@ public class InterfaceGraf {
 		JLabel lblNewLabel = new JLabel("Modo de Jogo");
 		lblNewLabel.setBounds(28, 86, 135, 14);
 		frmAmazeing.getContentPane().add(lblNewLabel);
+		
+		JButton btnCreate = new JButton("Create Game");
+		btnCreate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Labirinto labirinto = new Labirinto();
+				int possdrakes = Integer.parseUnsignedInt(Ndrakes.getText());
+				int tempDimentions = Integer.parseUnsignedInt(Dimention.getText());
+				
+				frmCreate = new JFrame();
+				frmCreate.setTitle("Graphics Demo");
+				frmCreate.setBounds(100, 100, 1000, 1000);
+				frmCreate.setPreferredSize(new Dimension(1000, 1000));
+				frmCreate.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				MazeCreator panel2 = new MazeCreator(tempDimentions, possdrakes);
+				panel2.labirinto=lab;
+				frmCreate.getContentPane().add(panel2);
+				
+				frmCreate.pack();
+				
+				frmCreate.setVisible(true);
+				panel2.requestFocus();
+			}
+			
+		});
+				
+		btnCreate.setBounds(425, 119, 246, 48);
+		frmAmazeing.getContentPane().add(btnCreate);
+		
+	
 		
 		JButton btnNewButton = new JButton("New Game");
 		btnNewButton.addActionListener(new ActionListener() {

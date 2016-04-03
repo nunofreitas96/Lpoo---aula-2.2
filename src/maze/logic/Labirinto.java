@@ -55,6 +55,19 @@ public  void inicialize()
 	lab.makeEspada();
 	lab.LabirintoDesenho();
 }
+
+public void inicialize2(){
+	lab= new LabirintoDraw(sizex,sizey);
+	cli= new CommandLine();
+	lab.MazeBuilder2();
+	/*int[] exit = lab.SearchExit();
+	lab.MakeWay(exit[1],exit[0]);
+	lab.makeDragons(ndrakes);
+	heroi= lab.makeHero();
+	System.out.println(heroi.x + " " + heroi.y );
+	lab.makeEspada();*/
+	lab.LabirintoDesenho();
+}
 public void JogadaParado(char key)
 {
 	cli.moveHeroi(lab,heroi,key);
