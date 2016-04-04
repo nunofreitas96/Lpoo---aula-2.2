@@ -1,69 +1,82 @@
-/*package maze.test;
+package maze.test;
 
 import static org.junit.Assert.*;
 
 
 import org.junit.Test;
 import maze.logic.*;
+import maze.GUI.InterfaceGraf;
 import maze.cli.*;
 public class aMAZE {
 
-	/*
+	
 	public char[][] TMaze() {
 		char[][] 
-		m1={{'X', 'X', 'X', 'X', 'X'},
-		    {'X', ' ', ' ', ' ', 'S'}, 
-		    {'X', ' ', 'X', ' ', 'X'},
-		    {'X', 'E', ' ', ' ', 'X'},
-		    {'X', 'X', 'X', 'X', 'X'}};
+		m1={{'X', 'X', 'X', 'X', 'X', 'X'},
+		    {'X', ' ', ' ', ' ', ' ', 'S'}, 
+		    {'X', ' ', 'X', ' ', ' ', 'X'},
+		    {'X', 'E', ' ', ' ', ' ', 'X'},
+		    {'X', 'X', 'X', 'X', 'X', 'X'}};
 		return m1;
 	}
 	
-	
-	//@Test
+	//public Labirinto StartTest(){
+		
+	//}
+	@Test
 	public void Movetest() {
+		
+		
+		Labirinto lab = new Labirinto();
+		LabirintoDraw lab2 = new LabirintoDraw(6,5);
+		lab.lab = lab2;
+		lab.lab.lab = TMaze();
 		Heroi heroi = new Heroi();
 		Dragao drake = new Dragao();
 		CommandLine cli = new CommandLine();
-		LabirintoDraw labirinto = new LabirintoDraw();
-		heroi.x = 4;
-		heroi.y =3;
-		drake.x =1;
-		drake.y =1;
-		assertEquals(1,cli.moveHeroKey('w',labirinto,drake,heroi));
-		assertEquals(4,heroi.x);
-		assertEquals(2,heroi.y);
+		lab.cli = cli;
+		
+		drake.x = 3;
+		drake.y = 1;
+		lab.heroi = heroi;
+		lab.lab.lab[drake.y][drake.x] = 'D';
+		lab.lab.lab[heroi.y][heroi.x] = 'H';
+		
+		
+		
+		int x = lab.heroi.x;
+		lab.JogadaParado('d');
+		
+		assertEquals(x+1,lab.heroi.x);
 		
 	}
-	//@Test
+	@Test
 	public void MoveWalltest() {
-		Heroi heroi = new Heroi();
-		Dragao drake = new Dragao();
-		CommandLine cli = new CommandLine();
-		LabirintoDraw labirinto = new LabirintoDraw();
-		heroi.x = 4;
-		heroi.y =3;
-		drake.x =1;
-		drake.y =1;
-		assertEquals(0,cli.moveHeroKey('d',labirinto,drake,heroi));
-		assertEquals(4,heroi.x);
-		assertEquals(3,heroi.y);
+		Labirinto lab = new Labirinto();
+		lab.inicialize();
+		
+		int x = lab.heroi.x;
+		if(lab.lab.lab[lab.heroi.x+1][lab.heroi.y] != 'X' ){
+			lab.lab.lab[lab.heroi.x+1][lab.heroi.y] = 'X';
+		}
+		lab.JogadaDormir('d');
+		assertEquals(x,lab.heroi.x);
 		
 	}
-	//@Test
+	/*
+	@Test
 	public void TestCatchSword(){
-		Heroi heroi = new Heroi();
-		Dragao drake = new Dragao();
-		CommandLine cli = new CommandLine();
-		LabirintoDraw labirinto = new LabirintoDraw();
-		heroi.x = 1;
-		heroi.y =7;
-		drake.x =1;
-		drake.y =1;
-		cli.moveHeroKey('s',labirinto,drake,heroi);
-		assertEquals(true,heroi.armado);
+		Labirinto lab = new Labirinto();
+		lab.inicialize();
 		
-	}
+		int x = lab.heroi.x;
+		if(lab.lab.lab[lab.heroi.x+1][lab.heroi.y] != 'E'){
+			lab.lab.lab[lab.heroi.x+1][lab.heroi.y] = 'E';
+		}
+		lab.JogadaDormir('d');
+		assertEquals('A',lab.heroi.carater);
+		
+	}/*
 	//@Test
 	public void TestDeath(){
 		Heroi heroi = new Heroi();
@@ -149,5 +162,5 @@ public class aMAZE {
 	}
 	
 	
-	
-}*/
+	*/
+}
