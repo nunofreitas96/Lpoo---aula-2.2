@@ -4,12 +4,33 @@ import java.util.Scanner;
 import maze.cli.CommandLine;
 
 public class Labirinto {
+/**
+ * Numero de dragoes existentes
+ */
 public int ndrakes=2;
+/**
+ * Tamanho x do labirinto
+ */
 public int sizex=11;
+/**
+ * Tamanho y do labirinto
+ */
 public int sizey=11;
+/**
+ * Inteiro que representa o modo de jogo
+ */
 public int modo=2;
+/**
+ * LabirintoDraw deste labirinto
+ */
 public  LabirintoDraw lab;
+/**
+ * Heroi deste Labirinto
+ */
 public  Heroi heroi;
+/**
+ * CommandLine deste Labirinto
+ */
 public  CommandLine cli;
 /*	public static void main(String[] args) 
 	{
@@ -41,7 +62,9 @@ public  CommandLine cli;
 		
     }
 */
-	
+/**
+ * Cria e inicializa um labirinto aleatorio com um heroi, uma saida, uma espada, e com n dragoes;
+ */
 public  void inicialize()
 {
 	lab= new LabirintoDraw(sizex,sizey);
@@ -55,7 +78,9 @@ public  void inicialize()
 	lab.makeEspada();
 	lab.LabirintoDesenho();
 }
-
+/**
+ * Cria e inicializa um labirinto apenas com as paredes á volta;
+ */
 public void inicialize2(){
 	lab= new LabirintoDraw(sizex,sizey);
 	cli= new CommandLine();
@@ -69,7 +94,10 @@ public void inicialize2(){
 	lab.makeEspada();*/
 	lab.LabirintoDesenho();
 }
-
+/**
+ * Realiza uma jogada do modo dragao parado;
+ * @param key, controla a direcao do movimento do heroi;
+ */
 public void JogadaParado(char key)
 {
 	cli.moveHeroi(lab,heroi,key);
@@ -82,7 +110,10 @@ public void JogadaParado(char key)
 	lab.checkdeath(lab.drakes.get(i),heroi,lab);
 	}
 }
-	
+/**
+ * Realiza uma jogada do modo dragao agitado;
+ * @param key, controla a direcao do movimento do heroi;
+ */
 public  void JogadaMovimento(char key)
 {
 	/*int k=1;
@@ -118,7 +149,10 @@ public  void JogadaMovimento(char key)
 	
 	
 }
-
+/**
+ * Realiza uma jogada do modo dragao dorminhoco;
+ * @param key, controla a direcao do movimento do heroi;
+ */
 
 public  void JogadaDormir(char key)
 {

@@ -6,7 +6,13 @@ import maze.logic.Heroi;
 import maze.logic.Labirinto;
 import maze.logic.LabirintoDraw;
 public class CommandLine {
+/**
+ * Indicador para saber quando ganhou o jogo
+ */
 public int ganhaste = 0;
+/**
+ * Cria uma CommandLine
+ */
 	public void commandLine(){
 		
 	}
@@ -33,7 +39,13 @@ public int ganhaste = 0;
 		Labirinto.AdorDragao();
 	}
 	*/
- public  void moveHeroi(LabirintoDraw labirinto,Heroi hero, char key)
+/**
+ * Move o heroi num labirinto(Criada para nao alterar o resto do codigo) 
+ * @param labirinto labirinto utilizado.
+ * @param hero heroi a mover.
+ * @param key controla a direcao desse movimento.
+ */
+public  void moveHeroi(LabirintoDraw labirinto,Heroi hero, char key)
 	{
 		
 		
@@ -42,7 +54,13 @@ public int ganhaste = 0;
 	}
 	
 	
-
+/**
+ * Move um heroi numa determinada direcao 
+ * @param key, controla a direcao do movimento
+ * @param labirinto, labirinto utilizado
+ * @param hero, heroi a mover
+ * @return
+ */
 public int moveHeroKey(char key,LabirintoDraw labirinto,Heroi hero)
 {
 	boolean alldead=false;

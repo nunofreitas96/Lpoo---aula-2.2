@@ -22,7 +22,11 @@ public char[][] lab; /*=   {{'X','X','X','X','X','X','X','X', 'X','X'},
 				{'X',' ','X','X',' ','X',' ','X',' ','X'},
 				{'X','E','X','X',' ',' ',' ',' ',' ','X'},
 				{'X','X','X','X','X','X','X','X','X','X'}};	*/
-	
+/**
+ * 	Cria um LabirintoDraw com as dimensoes  indicadas	
+ * @param sizex, dimensao em x
+ * @param sizey, dimensao em y
+ */
 public LabirintoDraw(int sizex,int sizey){
 	gameover=false;
 	this.sizex=sizex;
@@ -31,7 +35,10 @@ public LabirintoDraw(int sizex,int sizey){
 
 
 
-
+/** 
+ * Cria um labirinto de dimensoes sizex,sizey base com as celulas pares preenchidas por paredes
+ * @return labirinto gerado
+ */
 public char[][] MazeBuilder()
 {
 	char[][]maze = new char[sizey][sizex];
@@ -51,7 +58,10 @@ public char[][] MazeBuilder()
 	lab=maze;
 	return maze;
 }
-
+/**
+ * Cria um labirinto de dimensoes sizex,sizey base com paredes a volta
+ * @return
+ */
 public char[][] MazeBuilder2()
 {
 	char[][]maze = new char[sizey][sizex];
@@ -81,7 +91,10 @@ public char[][] MazeBuilder2()
 	lab=maze;
 	return maze;
 }
-
+/**
+ * Procura um sitio aleatorio para colocar a saida do labirinto
+ * @return array com as coordenadas da saida gerada
+ */
 public int[] SearchExit(){
 	int[] exit = new int[2];
 	Random generator= new Random();
@@ -164,7 +177,12 @@ static int[] shuffleArray()
   return ar;
 }
 
-
+/**
+ * Gera um labirinto aleatorio partindo das coordenadas da saida
+ * @param x1 coordenada x da saida
+ * @param y1 coordanada y da saida
+ * @return labirinto gerado
+ */
 public char[][]MakeWay(int x1, int y1){
 	char[][]visited;
 	visited = FillVisited();
@@ -284,7 +302,7 @@ public char[][]MakeWay(int x1, int y1){
 	return lab;
 }
 
-public char[][] FillVisited(){
+private char[][] FillVisited(){
 	
 	char[][]visited = new char[(sizey-1)/2 ][(sizex-1)/2];
 	for(int j =0; j < (sizey-1)/2 ; j++){
@@ -295,7 +313,7 @@ public char[][] FillVisited(){
 	return visited;
 }
 
-public boolean CheckVisited(char[][] visited){
+private boolean CheckVisited(char[][] visited){
 	
 	for(int j=0; j < (sizey-1)/2; j++){
 		for(int i =0; i < (sizex-1)/2; i++){
@@ -308,7 +326,9 @@ public boolean CheckVisited(char[][] visited){
 	
 	return true;
 }
-
+/**
+ * Desenha labirinto na consola
+ */
 public void LabirintoDesenho()
 {
 
@@ -325,7 +345,10 @@ for(int i=0;i<sizey;i++)
 }
 
 }
-
+/**
+ * Cria e coloca os dragoes no labirinto 
+ * @param n, numero de dragoes
+ */
 public void makeDragons(int n){
 	int ncheck =0;
 	while(ncheck < n){
@@ -344,7 +367,10 @@ public void makeDragons(int n){
 		 
 	}
 }
-
+/**
+ * Cria e coloca o heroi no labirinto em posicao nao adjacente aos dragoes
+ * @return
+ */
 public Heroi makeHero(){
 	int ncheck =0;
 	while(ncheck < 1){
@@ -366,7 +392,9 @@ public Heroi makeHero(){
 	return null;
 	
 }
-
+/**
+ * Cria e colaca espada no labirinto
+ */
 public void makeEspada(){
 	int ncheck =0;
 	while(ncheck < 1){
@@ -385,7 +413,10 @@ public void makeEspada(){
 	}
 	return;
 }
-	
+/**
+ * Converte o labirinto atual para string
+ * @return labirinto em string
+ */
 public String mazeToString()
 {
 String maze="";
@@ -401,7 +432,12 @@ String maze="";
 	}
 return maze;
 }
-
+/**
+ * Controla a morte de um dragao ou do heroi
+ * @param drake dragao 
+ * @param heroi heroi
+ * @param labirinto labirinto
+ */
 public void checkdeath(Dragao drake,Heroi heroi, LabirintoDraw labirinto)
 {
 	if(drake.estado!="morto")

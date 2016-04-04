@@ -455,7 +455,26 @@ public class InterfaceGraf {
 				int possdrakes = Integer.parseUnsignedInt(Ndrakes.getText());
 				int tempDimentionsx = Integer.parseUnsignedInt(Dimentionx.getText());
 				int tempDimentionsy = Integer.parseUnsignedInt(Dimentiony.getText());
-				
+				if(tempDimentionsx%2==0||tempDimentionsx<=4||tempDimentionsy%2==0||tempDimentionsy<=4 || possdrakes<=0|| possdrakes >(tempDimentionsx/3) )
+				{
+					if(tempDimentionsx%2==0||tempDimentionsx<=4)
+					{
+					Descricao.setText("Escolha uma dimencao X adequada (inteiro impar [5;27])");
+					}
+					else if(tempDimentionsy%2==0||tempDimentionsy<=4)
+					{
+					Descricao.setText("Escolha uma dimencao y adequada (inteiro impar [5;15])");
+					}
+					else if(possdrakes<=0 || possdrakes >(tempDimentionsx/3))
+					{
+						Descricao.setText("Numero de Dragoes nao permitido");
+					}
+					/*if((tempDimentions%2==0||tempDimentions<=0) && ( tempNdrakes<=0 || tempNdrakes >(tempDimentions/3)))
+					{
+						Descricao.setText("Ambos os campos nao permitidos");
+					}*/
+				}
+				else{
 				frmCreate = new JFrame();
 				frmCreate.setTitle("Graphics Demo");
 				frmCreate.setBounds(100, 100, 1000, 1000);
@@ -464,6 +483,8 @@ public class InterfaceGraf {
 				MazeCreator panel2 = new MazeCreator(tempDimentionsx,tempDimentionsy, possdrakes);
 
 				frmCreate.getContentPane().add(panel2);
+				
+				
 				if(ModoDeJogo.getSelectedItem()=="Dragao Dorminhoco")
 					
 				{
@@ -482,8 +503,9 @@ public class InterfaceGraf {
 				
 				frmCreate.setVisible(true);
 				panel2.requestFocus();
-			}
+				}
 			
+			}
 		});
 				
 		btnCreate.setBounds(425, 119, 246, 48);

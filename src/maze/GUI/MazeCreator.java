@@ -142,6 +142,7 @@ public class MazeCreator extends JPanel {
 							labirinto.lab.lab[tempy][tempx]  ='X';
 							labirinto.heroi.x=0;
 							labirinto.heroi.y=0;
+							play.setEnabled(false);
 						}
 						else if(labirinto.lab.lab[tempy][tempx]  =='X')
 						{
@@ -254,6 +255,7 @@ public class MazeCreator extends JPanel {
 						}
 							labirinto.heroi.x=0;
 							labirinto.heroi.y=0;
+							play.setEnabled(false);
 						}
 						else if(labirinto.lab.lab[tempy][tempx]  == 'D')
 						{
@@ -262,6 +264,7 @@ public class MazeCreator extends JPanel {
 								if (labirinto.lab.drakes.get(i).x==tempx && labirinto.lab.drakes.get(i).y==tempy)
 								{
 									labirinto.lab.lab[tempy][tempx]=' ';
+									labirinto.lab.lab[0][0]='X';
 									labirinto.lab.drakes.remove(i);
 									labirinto.lab.drakes.trimToSize();
 									ndragons--;
@@ -305,6 +308,14 @@ public class MazeCreator extends JPanel {
 									ndragons--;
 								}
 							}
+						}
+						else if (labirinto.lab.lab[tempy][tempx] =='H')
+						{
+							labirinto.lab.lab[tempy][tempx]  ='E'; 
+							labirinto.heroi.x=0;
+							labirinto.heroi.y=0;
+							play.setEnabled(false);
+							nhero =0;
 						}
 					else if(labirinto.lab.lab[tempy][tempx] =='E')
 						{

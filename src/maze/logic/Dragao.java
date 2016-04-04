@@ -2,12 +2,29 @@ package maze.logic;
 import java.util.Random;
 
 public class Dragao {
-	
+	/**
+	 * Estado do dragao, pode alterar entre "morto", "acordado", "dormir"
+	 */
 	public String estado;
+	/**
+	 * Coordenada x do dragao
+	 */
 	public int x;
+	/**
+	 * Coordenada y do dragao
+	 */
 	public int y;
+	/**
+	 * Carater do dragao, d-"dormir" D-"acordado"
+	 */
 	public char carater;
+	/**
+	 * True, se tiver encima da espada 
+	*/
 	public boolean temEspada;
+	/**
+	 * Cria um Dragao 
+	 */
 	public Dragao()
 	{
 		carater='D';
@@ -16,6 +33,11 @@ public class Dragao {
 		y=3;
 		temEspada=false;
 	}
+	/**
+	 *  Cria um Dragao com as coordenadas indicadas
+	 * @param x, coordenada x
+	 * @param y, coordenada y
+	 */
 	public Dragao(int x, int y){
 		carater='D';
 		estado="acordado";
@@ -25,14 +47,18 @@ public class Dragao {
 		
 	}
 
-	
+/**
+ * Altera o estado do dragao para "morto"	
+ */
 	public void dragaoMorre()
 	{
 		estado="morto";
 		carater=' ';
 		
 	}
-	
+/**
+ * Altera o estado do dragao para "dormir" ou "acordado" aleatoriamente
+ */
 	public void adacDragao()
 	{
 		Random generator= new Random();
@@ -65,6 +91,10 @@ public class Dragao {
 		 }
 		}
 	}
+/**
+ * Utilizada para ter a certeza que o dragao move 
+ * @param labirinto
+ */
 	public void moveDragao(LabirintoDraw labirinto)
 	{
 		if(labirinto.gameover==true)
@@ -78,12 +108,20 @@ public class Dragao {
 			
 		}
 	}
+/**
+ * Faz dragao apanhar a espada
+ */
 	public void apanhaEspada()
 	{
 		carater='F';
 		temEspada=true;
 	}
 	
+/**
+ * Move o dragao numa direcao aleatoria
+ * @param labirinto, labirinto utilizado.
+ * @return
+ */
 	public int move(LabirintoDraw labirinto)
 	{
 		Random generator =new Random();
