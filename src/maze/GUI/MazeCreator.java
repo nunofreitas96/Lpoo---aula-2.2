@@ -296,11 +296,22 @@ public class MazeCreator extends JPanel {
 				case "Sword":
 					if(tempx !=0 && tempy !=0 && tempx != posx-1 && tempy != posy-1 ){
 						if(labirinto.lab.lab[tempy][tempx]  == 'D')
+							
 						{
 							for (int i=0; i<	labirinto.lab.drakes.size();i++)
 							{
 								if (labirinto.lab.drakes.get(i).x==tempx && labirinto.lab.drakes.get(i).y==tempy)
 								{
+									for (int l=0; l<posy; l++)
+									{
+										for (int j=0; j<posy; j++)
+										{
+											if (labirinto.lab.lab[l][j]=='E')
+											{
+												labirinto.lab.lab[l][j]=' ';
+											}
+										}
+									}
 									labirinto.lab.lab[tempy][tempx]='E';
 									labirinto.lab.drakes.remove(i);
 									labirinto.lab.drakes.trimToSize();
@@ -310,7 +321,16 @@ public class MazeCreator extends JPanel {
 							}
 						}
 						else if (labirinto.lab.lab[tempy][tempx] =='H')
+						{for (int i=0; i<posy; i++)
 						{
+							for (int j=0; j<posy; j++)
+							{
+								if (labirinto.lab.lab[i][j]=='E')
+								{
+									labirinto.lab.lab[i][j]=' ';
+								}
+							}
+						}
 							labirinto.lab.lab[tempy][tempx]  ='E'; 
 							labirinto.heroi.x=0;
 							labirinto.heroi.y=0;
@@ -321,9 +341,22 @@ public class MazeCreator extends JPanel {
 						{
 						labirinto.lab.lab[tempy][tempx]  =' ';
 						}
-						else labirinto.lab.lab[tempy][tempx]  ='E';
-							
+						else 
+						{
+						for (int i=0; i<posy; i++)
+						{
+							for (int j=0; j<posy; j++)
+							{
+								if (labirinto.lab.lab[i][j]=='E')
+								{
+									labirinto.lab.lab[i][j]=' ';
+								}
+							}
+						}
 						
+						labirinto.lab.lab[tempy][tempx]  ='E';
+							
+						}
 						
 						}
 					break;
