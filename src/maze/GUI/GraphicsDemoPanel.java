@@ -25,6 +25,12 @@ public class GraphicsDemoPanel extends JPanel {
 	private BufferedImage espada;
 	private BufferedImage heroiArmado;
 	private BufferedImage dragaoDormir;
+	private BufferedImage relva;
+	private BufferedImage portaoVertical;
+	private BufferedImage dragaoDormirArmado;
+	private BufferedImage dragaoArmado;
+	private BufferedImage youWin;
+	private BufferedImage youLose;
 	
 	private int x=0, y=0, width=100, height=100;
 	public Labirinto labirinto;
@@ -34,11 +40,17 @@ public class GraphicsDemoPanel extends JPanel {
 			brickWall =  ImageIO.read(new File("brickWall.png"));
 			portao = ImageIO.read(new File("portao.png"));
 			heroi=ImageIO.read(new File("heroi.png"));
-			dragao= ImageIO.read(new File("bigD.png"));
+			dragao= ImageIO.read(new File("dragao.png"));
 			espada=  ImageIO.read(new File("Espada.png"));
-			heroiArmado= ImageIO.read(new File("armado.png"));
-			dragaoDormir= ImageIO.read(new File("smalld.png"));
-			  
+			heroiArmado= ImageIO.read(new File("heroiArmado.png"));
+			dragaoDormir= ImageIO.read(new File("dragaoDorminhoco.png"));
+			relva=ImageIO.read(new File("relva.png"));
+			portaoVertical=ImageIO.read(new File("portaoVertical.png"));
+			dragaoDormirArmado= ImageIO.read(new File("dragaoDorminhocoArmado.png"));
+			dragaoArmado= ImageIO.read(new File("dragaoArmado.png"));
+			youLose= ImageIO.read(new File("youLose.png"));
+			youWin= ImageIO.read(new File("youWIN.png"));
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
@@ -176,42 +188,67 @@ public class GraphicsDemoPanel extends JPanel {
 				{
 					if (labirinto.lab.gameover==true)
 					{
-					g.drawImage(dragaoDormir, 10, 10,  200, 200, 0, 0, 200, 200, null);
+					g.drawImage(youLose, 0, 0,  300, 150, 0, 0, 300, 150, null);
+					Window d= SwingUtilities.getWindowAncestor(GraphicsDemoPanel.this);
+					d.setBounds(100, 100,300+15, 150+30);
 					}
 					if (labirinto.cli.ganhaste==1)
 					{
-					g.drawImage(dragao, 10, 10,  200, 200, 0, 0, 200, 200, null);
+					g.drawImage(youWin, 0, 0,  300, 150, 0, 0, 300, 150, null);
+					Window d= SwingUtilities.getWindowAncestor(GraphicsDemoPanel.this);
+					d.setBounds(100, 100,300+15, 150+30);
+					
 					}
 				}
 				else
 				{
 				if (labirinto.lab.lab[i][j]=='X')
 				{//g.drawImage(brickWall, sitiox, sitioy, sitiox + brickWall.getWidth()-100-1, sitioy + brickWall.getHeight()-100-1, 0, 0, brickWall.getWidth()-100, brickWall.getHeight()-100, null);
-					g.drawImage(brickWall, sitiox, sitioy, sitiox + 50-1, sitioy +50-1, 0, 0, 50, 50, null);
+					g.drawImage(brickWall, sitiox, sitioy, sitiox + 50, sitioy +50, 0, 0, 50, 50, null);
 				}
 				if (labirinto.lab.lab[i][j]=='S')
 				{
-					g.drawImage(portao, sitiox, sitioy, sitiox + 50-1, sitioy +50-1, 0, 0, 50, 50, null);
+					if(labirinto.lab.lab[i][0]=='S'||labirinto.lab.lab[i][labirinto.sizex-1]=='S')
+					{
+						g.drawImage(portaoVertical, sitiox, sitioy, sitiox + 50, sitioy +50, 0, 0, 50, 50, null);
+					}
+					else
+					{
+					g.drawImage(portao, sitiox, sitioy, sitiox + 50, sitioy +50, 0, 0, 50, 50, null);
+					}
 				}
 				if (labirinto.lab.lab[i][j]=='H')
 				{
-					g.drawImage(heroi, sitiox, sitioy, sitiox + 50-1, sitioy +50-1, 0, 0, 50, 50, null);
+					g.drawImage(heroi, sitiox, sitioy, sitiox + 50, sitioy +50, 0, 0, 50, 50, null);
 				}
 				if (labirinto.lab.lab[i][j]=='D')
 				{
-					g.drawImage(dragao, sitiox, sitioy, sitiox + 50-1, sitioy +50-1, 0, 0, 50, 50, null);
+					g.drawImage(dragao, sitiox, sitioy, sitiox + 50, sitioy +50, 0, 0, 50, 50, null);
 				}
 				if (labirinto.lab.lab[i][j]=='E')
 				{
-					g.drawImage(espada, sitiox, sitioy, sitiox + 50-1, sitioy +50-1, 0, 0, 50, 50, null);
+					g.drawImage(espada, sitiox, sitioy, sitiox + 50, sitioy +50, 0, 0, 50, 50, null);
 				}
 				if (labirinto.lab.lab[i][j]=='A')
 				{
-					g.drawImage(heroiArmado, sitiox, sitioy, sitiox + 50-1, sitioy +50-1, 0, 0, 50, 50, null);
+					g.drawImage(heroiArmado, sitiox, sitioy, sitiox + 50, sitioy +50, 0, 0, 50, 50, null);
 				}
 				if (labirinto.lab.lab[i][j]=='d')
 				{
-					g.drawImage(dragaoDormir, sitiox, sitioy, sitiox + 50-1, sitioy +50-1, 0, 0, 50, 50, null);
+					g.drawImage(dragaoDormir, sitiox, sitioy, sitiox + 50, sitioy +50, 0, 0, 50, 50, null);
+				}
+				if (labirinto.lab.lab[i][j]==' ')
+				{
+					g.drawImage(relva, sitiox, sitioy, sitiox + 50, sitioy +50, 0, 0, 50, 50, null);
+				}
+				if (labirinto.lab.lab[i][j]=='f')
+				{
+					g.drawImage(dragaoDormirArmado, sitiox, sitioy, sitiox + 50, sitioy +50, 0, 0, 50, 50, null);
+				
+				}
+				if (labirinto.lab.lab[i][j]=='F')
+				{
+					g.drawImage(dragaoArmado, sitiox, sitioy, sitiox + 50, sitioy +50, 0, 0, 50, 50, null);
 				}
 				}
 			}

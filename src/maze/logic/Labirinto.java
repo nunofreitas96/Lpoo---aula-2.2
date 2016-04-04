@@ -48,7 +48,7 @@ public  void inicialize()
 	cli= new CommandLine();
 	lab.MazeBuilder();
 	int[] exit = lab.SearchExit();
-	lab.MakeWay(exit[1],exit[0]);
+	lab.MakeWay(exit[0],exit[1]);
 	lab.makeDragons(ndrakes);
 	heroi= lab.makeHero();
 	System.out.println(heroi.x + " " + heroi.y );
@@ -60,14 +60,16 @@ public void inicialize2(){
 	lab= new LabirintoDraw(sizex,sizey);
 	cli= new CommandLine();
 	lab.MazeBuilder2();
+	heroi= new Heroi();
 	/*int[] exit = lab.SearchExit();
 	lab.MakeWay(exit[1],exit[0]);
 	lab.makeDragons(ndrakes);
-	heroi= lab.makeHero();
+	heroi= 
 	System.out.println(heroi.x + " " + heroi.y );
 	lab.makeEspada();*/
 	lab.LabirintoDesenho();
 }
+
 public void JogadaParado(char key)
 {
 	cli.moveHeroi(lab,heroi,key);

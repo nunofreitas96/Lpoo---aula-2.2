@@ -48,11 +48,21 @@ public class Dragao {
 		if (n==1&&estado!="morto")
 		{estado="dormir";
 		 carater='d';
+		 if (temEspada==true)
+		 {
+			 estado="dormir";
+			 carater='f';
+		 }
 		}
 		if (n==2&&estado!="morto")
 		{
 		estado="acordado";
 		carater='D';
+		if (temEspada==true)
+		 {
+			 estado="acordado";
+			 carater='F';
+		 }
 		}
 	}
 	public void moveDragao(LabirintoDraw labirinto)
@@ -78,7 +88,26 @@ public class Dragao {
 	{
 		Random generator =new Random();
 		int n= generator.nextInt(6)+1;
-		if( n==1 && labirinto.lab[y-1][x]==' ')
+		if((labirinto.lab[y-1][x]=='D'&& labirinto.lab[y+1][x]=='X'&& labirinto.lab[y][x+1]=='X'&& labirinto.lab[y-1][x-1]=='X')||
+			(labirinto.lab[y-1][x]=='X'&& labirinto.lab[y+1][x]=='D'&& labirinto.lab[y][x+1]=='X'&& labirinto.lab[y-1][x-1]=='X')||
+			(labirinto.lab[y-1][x]=='X'&& labirinto.lab[y+1][x]=='X'&& labirinto.lab[y][x+1]=='D'&& labirinto.lab[y-1][x-1]=='X')||
+			(labirinto.lab[y-1][x]=='X'&& labirinto.lab[y+1][x]=='X'&& labirinto.lab[y][x+1]=='X'&& labirinto.lab[y-1][x-1]=='D')||
+			(labirinto.lab[y-1][x]=='d'&& labirinto.lab[y+1][x]=='X'&& labirinto.lab[y][x+1]=='X'&& labirinto.lab[y-1][x-1]=='X')||
+			(labirinto.lab[y-1][x]=='X'&& labirinto.lab[y+1][x]=='d'&& labirinto.lab[y][x+1]=='X'&& labirinto.lab[y-1][x-1]=='X')||
+			(labirinto.lab[y-1][x]=='X'&& labirinto.lab[y+1][x]=='X'&& labirinto.lab[y][x+1]=='d'&& labirinto.lab[y-1][x-1]=='X')||
+			(labirinto.lab[y-1][x]=='X'&& labirinto.lab[y+1][x]=='X'&& labirinto.lab[y][x+1]=='X'&& labirinto.lab[y-1][x-1]=='d')||
+			(labirinto.lab[y-1][x]=='F'&& labirinto.lab[y+1][x]=='X'&& labirinto.lab[y][x+1]=='X'&& labirinto.lab[y-1][x-1]=='X')||
+			(labirinto.lab[y-1][x]=='X'&& labirinto.lab[y+1][x]=='F'&& labirinto.lab[y][x+1]=='X'&& labirinto.lab[y-1][x-1]=='X')||
+			(labirinto.lab[y-1][x]=='X'&& labirinto.lab[y+1][x]=='X'&& labirinto.lab[y][x+1]=='F'&& labirinto.lab[y-1][x-1]=='X')||
+			(labirinto.lab[y-1][x]=='X'&& labirinto.lab[y+1][x]=='X'&& labirinto.lab[y][x+1]=='X'&& labirinto.lab[y-1][x-1]=='F')||
+			(labirinto.lab[y-1][x]=='f'&& labirinto.lab[y+1][x]=='X'&& labirinto.lab[y][x+1]=='X'&& labirinto.lab[y-1][x-1]=='X')||
+			(labirinto.lab[y-1][x]=='X'&& labirinto.lab[y+1][x]=='f'&& labirinto.lab[y][x+1]=='X'&& labirinto.lab[y-1][x-1]=='X')||
+			(labirinto.lab[y-1][x]=='X'&& labirinto.lab[y+1][x]=='X'&& labirinto.lab[y][x+1]=='f'&& labirinto.lab[y-1][x-1]=='X')||
+			(labirinto.lab[y-1][x]=='X'&& labirinto.lab[y+1][x]=='X'&& labirinto.lab[y][x+1]=='X'&& labirinto.lab[y-1][x-1]=='f'))
+		{
+			return 0;
+		}
+		if( n==1 && labirinto.lab[y-1][x]==' '||labirinto.lab[y-1][x]=='E')
 		{
 			if(temEspada==true&&estado=="acordado")
 			{
@@ -111,6 +140,7 @@ public class Dragao {
 			{
 				apanhaEspada();
 			}
+			labirinto.lab[y][x]=' ';
 			y=y+1;
 			return 0;
 		}

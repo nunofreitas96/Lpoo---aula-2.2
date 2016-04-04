@@ -52,6 +52,31 @@ public char[][] MazeBuilder()
 	return maze;
 }
 
+public char[][] MazeBuilder2()
+{
+	char[][]maze = new char[sizey][sizex];
+	//encher de X's as pares
+	for(int i = 0; i < sizey ;i++){
+		maze[0][i] = 'X';
+		maze[sizex-1][i] = 'X';
+	}
+	for(int i = 0; i < sizey ;i++){
+		maze[i][0] = 'X';
+		maze[i][sizey-1] = 'X';
+	}
+	for(int i =0; i <sizey;i++)
+	{
+		for(int j = 0; j < sizex ;j++)
+		{
+			if(maze[i][j]!='X')
+			{
+				maze[i][j]=' ';
+			}
+		}
+	}
+	lab=maze;
+	return maze;
+}
 
 public int[] SearchExit(){
 	int[] exit = new int[2];
@@ -266,22 +291,6 @@ public char[][] FillVisited(){
 	return visited;
 }
 
-public char[][] MazeBuilder2()
-{
-	char[][]maze = new char[sizey][sizex];
-	//encher de X's as pares
-	for(int i = 0; i < sizey ;i++){
-		maze[0][i] = 'X';
-		maze[sizex-1][i] = 'X';
-	}
-	for(int i = 0; i < sizey ;i++){
-		maze[i][0] = 'X';
-		maze[i][sizey-1] = 'X';
-	}
-	lab=maze;
-	return maze;
-}
-
 public boolean CheckVisited(char[][] visited){
 	
 	for(int j=0; j < (sizey-1)/2; j++){
@@ -340,7 +349,7 @@ public Heroi makeHero(){
 		 int y;
 		 x= rnd.nextInt(sizex-1)+1;
 		 y= rnd.nextInt(sizey-1)+1;
-		 if(lab[y][x] == ' ' && lab[y][x] != 'D'&& lab[y-1][x] != 'D' && lab[y][x+1] != 'D' && lab[y][x-1] != 'D')
+		 if(lab[y][x] == ' ' && lab[y+1][x] != 'D'&& lab[y-1][x] != 'D' && lab[y][x+1] != 'D' && lab[y][x-1] != 'D')
 		 {
 			 Heroi hero = new Heroi();
 			 hero.x=x;
@@ -362,10 +371,10 @@ public void makeEspada(){
 		 int y;
 		 x= rnd.nextInt(sizex-1)+1;
 		 y= rnd.nextInt(sizey-1)+1;
-		 if (lab[x][y] == ' ' )
+		 if (lab[y][x] == ' ' )
 		 {
 			
-			 lab[x][y] = 'E';
+			 lab[y][x] = 'E';
 			 ncheck++;
 			 return;
 		 }

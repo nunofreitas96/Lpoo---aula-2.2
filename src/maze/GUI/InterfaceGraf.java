@@ -27,7 +27,7 @@ import java.beans.PropertyChangeEvent;
 public class InterfaceGraf {
 
 	private JFrame frmAmazeing;
-	private JTextField Dimention;
+	private JTextField Dimentionx;
 	private JTextField Ndrakes;
 	private static Labirinto lab;
 	private static boolean created=false;
@@ -36,7 +36,9 @@ public class InterfaceGraf {
 	private JButton btnNewButton_7;
 	private JButton btnNewButton_6;
 	private JFrame frmGraphicsDemo;
+	private JTextField Dimentiony;
 	private JFrame frmCreate;
+	GraphicsDemoPanel panel;
 	/**
 	 * Launch the application.
 	 */
@@ -103,11 +105,11 @@ public class InterfaceGraf {
 		textArea.setBounds(29, 139, 346, 299);
 		frmAmazeing.getContentPane().add(textArea);
 		
-		Dimention = new JTextField();
-		Dimention.setText("11");
-		Dimention.setBounds(192, 33, 86, 20);
-		frmAmazeing.getContentPane().add(Dimention);
-		Dimention.setColumns(10);
+		Dimentionx = new JTextField();
+		Dimentionx.setText("11");
+		Dimentionx.setBounds(204, 33, 26, 20);
+		frmAmazeing.getContentPane().add(Dimentionx);
+		Dimentionx.setColumns(10);
 		
 		JLabel Descricao = new JLabel("Gere Labirinto!");
 		Descricao.addPropertyChangeListener(new PropertyChangeListener() {
@@ -148,6 +150,7 @@ public class InterfaceGraf {
 				if (lab.modo==2)
 				{
 					lab.JogadaMovimento('a');
+				
 					textArea.setText(lab.lab.mazeToString());
 					if(lab.cli.ganhaste==1)
 					{
@@ -171,6 +174,7 @@ public class InterfaceGraf {
 				if (lab.modo==3)
 				{
 					lab.JogadaDormir('a');
+					
 					textArea.setText(lab.lab.mazeToString());
 					if(lab.cli.ganhaste==1)
 					{
@@ -449,17 +453,31 @@ public class InterfaceGraf {
 			public void actionPerformed(ActionEvent e) {
 				//Labirinto labirinto = new Labirinto();
 				int possdrakes = Integer.parseUnsignedInt(Ndrakes.getText());
-				int tempDimentions = Integer.parseUnsignedInt(Dimention.getText());
+				int tempDimentionsx = Integer.parseUnsignedInt(Dimentionx.getText());
+				int tempDimentionsy = Integer.parseUnsignedInt(Dimentiony.getText());
 				
 				frmCreate = new JFrame();
 				frmCreate.setTitle("Graphics Demo");
 				frmCreate.setBounds(100, 100, 1000, 1000);
 				frmCreate.setPreferredSize(new Dimension(1000, 1000));
 				frmCreate.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				MazeCreator panel2 = new MazeCreator(tempDimentions, possdrakes);
+				MazeCreator panel2 = new MazeCreator(tempDimentionsx,tempDimentionsy, possdrakes);
 
 				frmCreate.getContentPane().add(panel2);
-				
+				if(ModoDeJogo.getSelectedItem()=="Dragao Dorminhoco")
+					
+				{
+					panel2.labirinto.modo=3;
+				}
+				if(ModoDeJogo.getSelectedItem()=="Dragao Agitado")
+				{
+					panel2.labirinto.modo=2;
+				}
+				if(ModoDeJogo.getSelectedItem()=="Dragao Parado")
+				{
+					panel2.labirinto.modo=1;
+				}
+			
 				frmCreate.pack();
 				
 				frmCreate.setVisible(true);
@@ -471,24 +489,27 @@ public class InterfaceGraf {
 		btnCreate.setBounds(425, 119, 246, 48);
 		frmAmazeing.getContentPane().add(btnCreate);
 		
-	
-		
 		JButton btnNewButton = new JButton("New Game");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Labirinto labirinto = new Labirinto();
 				int tempNdrakes = Integer.parseUnsignedInt(Ndrakes.getText());
 				labirinto.ndrakes= tempNdrakes;
-				int tempDimentions = Integer.parseUnsignedInt(Dimention.getText());
-				labirinto.sizex=tempDimentions;
-				labirinto.sizey=tempDimentions;
-				if(tempDimentions%2==0||tempDimentions<=0 || tempNdrakes<=0 || tempNdrakes >(tempDimentions/3))
+				int tempDimentionsx = Integer.parseUnsignedInt(Dimentionx.getText());
+				int tempDimentionsy = Integer.parseUnsignedInt(Dimentiony.getText());
+				labirinto.sizex=tempDimentionsx;
+				labirinto.sizey=tempDimentionsy;
+				if(tempDimentionsx%2==0||tempDimentionsx<=4||tempDimentionsy%2==0||tempDimentionsy<=4 || tempNdrakes<=0|| tempNdrakes >(tempDimentionsx/3) )
 				{
-					if(tempDimentions%2==0||tempDimentions<=0)
+					if(tempDimentionsx%2==0||tempDimentionsx<=4)
 					{
-					Descricao.setText("Dimensoes de Labirinto nao permitidas");
+					Descricao.setText("Escolha uma dimencao X adequada (inteiro impar [5;27])");
 					}
-					else if(tempNdrakes<=0 || tempNdrakes >(tempDimentions/3))
+					else if(tempDimentionsy%2==0||tempDimentionsy<=4)
+					{
+					Descricao.setText("Escolha uma dimencao y adequada (inteiro impar [5;15])");
+					}
+					else if(tempNdrakes<=0 || tempNdrakes >(tempDimentionsx/3))
 					{
 						Descricao.setText("Numero de Dragoes nao permitido");
 					}
@@ -516,14 +537,14 @@ public class InterfaceGraf {
 				created=true;
 				frmGraphicsDemo = new JFrame();
 				frmGraphicsDemo.setTitle("Graphics Demo");
-				frmGraphicsDemo.setBounds(100, 100, 450, 300);
+				frmGraphicsDemo.setBounds(100, 100,lab.sizex*50+15, lab.sizey*50+30);
 				frmGraphicsDemo.setPreferredSize(new Dimension(450, 300));
 				frmGraphicsDemo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				GraphicsDemoPanel panel = new GraphicsDemoPanel();
+				panel = new GraphicsDemoPanel();
 				panel.labirinto=lab;
 				frmGraphicsDemo.getContentPane().add(panel);
 				
-				frmGraphicsDemo.pack();
+				//frmGraphicsDemo.pack();
 				
 				frmGraphicsDemo.setVisible(true);
 				
@@ -552,6 +573,20 @@ public class InterfaceGraf {
 		});
 		btnNewButton_1.setBounds(425, 69, 246, 48);
 		frmAmazeing.getContentPane().add(btnNewButton_1);
+		
+		Dimentiony = new JTextField();
+		Dimentiony.setText("11");
+		Dimentiony.setBounds(280, 33, 26, 20);
+		frmAmazeing.getContentPane().add(Dimentiony);
+		Dimentiony.setColumns(10);
+		
+		JLabel lblX = new JLabel("x:");
+		lblX.setBounds(184, 36, 15, 14);
+		frmAmazeing.getContentPane().add(lblX);
+		
+		JLabel lblY = new JLabel("y:");
+		lblY.setBounds(263, 36, 15, 14);
+		frmAmazeing.getContentPane().add(lblY);
 	
 
 
