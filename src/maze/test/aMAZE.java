@@ -20,19 +20,16 @@ public class aMAZE {
 		return m1;
 	}
 	
-	//public Labirinto StartTest(){
-		
-	//}
-	@Test
-	public void Movetest() {
-		
-		
+	
+	
+	public Labirinto StartTest(){
 		Labirinto lab = new Labirinto();
 		LabirintoDraw lab2 = new LabirintoDraw(6,5);
 		lab.lab = lab2;
 		lab.lab.lab = TMaze();
 		Heroi heroi = new Heroi();
 		Dragao drake = new Dragao();
+		lab.lab.drakes.add(drake);
 		CommandLine cli = new CommandLine();
 		lab.cli = cli;
 		
@@ -42,6 +39,15 @@ public class aMAZE {
 		lab.lab.lab[drake.y][drake.x] = 'D';
 		lab.lab.lab[heroi.y][heroi.x] = 'H';
 		
+		return lab;
+	}
+	@Test
+	public void Movetest() {
+		
+		Labirinto lab = new Labirinto();
+		lab = StartTest();
+		
+		
 		
 		
 		int x = lab.heroi.x;
@@ -50,117 +56,148 @@ public class aMAZE {
 		assertEquals(x+1,lab.heroi.x);
 		
 	}
+	
+	
 	@Test
 	public void MoveWalltest() {
+		
+		
 		Labirinto lab = new Labirinto();
-		lab.inicialize();
+		lab = StartTest();
 		
 		int x = lab.heroi.x;
-		if(lab.lab.lab[lab.heroi.x+1][lab.heroi.y] != 'X' ){
-			lab.lab.lab[lab.heroi.x+1][lab.heroi.y] = 'X';
-		}
-		lab.JogadaDormir('d');
+		
+		lab.JogadaParado('e');
 		assertEquals(x,lab.heroi.x);
 		
 	}
-	/*
+	
 	@Test
 	public void TestCatchSword(){
 		Labirinto lab = new Labirinto();
-		lab.inicialize();
+		lab = StartTest();
 		
 		int x = lab.heroi.x;
 		if(lab.lab.lab[lab.heroi.x+1][lab.heroi.y] != 'E'){
 			lab.lab.lab[lab.heroi.x+1][lab.heroi.y] = 'E';
 		}
-		lab.JogadaDormir('d');
+		lab.JogadaParado('s');
+		lab.JogadaParado('s');
 		assertEquals('A',lab.heroi.carater);
 		
-	}/*
-	//@Test
+	}
+	@Test
 	public void TestDeath(){
-		Heroi heroi = new Heroi();
-		Dragao drake = new Dragao();
-		CommandLine cli = new CommandLine();
-		LabirintoDraw labirinto = new LabirintoDraw();
-		cli.moveHeroKey('s',labirinto,drake,heroi);
-		labirinto.checkdeath(drake,heroi,labirinto);
-		assertEquals(true,labirinto.gameover);
+		Labirinto lab = new Labirinto();
+		lab = StartTest();
+		int x = lab.heroi.x;
+		int y = lab.heroi.y;
+		lab.JogadaParado('d');
+		
+		assertEquals(' ',lab.lab.lab[x+1][y]);
 		
 	}
-	//@Test
+	@Test
 	public void testDDeath(){
-		Heroi heroi = new Heroi();
-		Dragao drake = new Dragao();
-		CommandLine cli = new CommandLine();
-		LabirintoDraw labirinto = new LabirintoDraw();
-		heroi.armado = true;
-		cli.moveHeroKey('s',labirinto,drake,heroi);
-		labirinto.checkdeath(drake,heroi,labirinto);
-		assertEquals("morto",drake.estado);
+		Labirinto lab = new Labirinto();
+		lab = StartTest();
+		int x = lab.heroi.x;
+		int y = lab.heroi.y;
+		
+		lab.JogadaParado('s');
+		lab.JogadaParado('s');
+		lab.JogadaParado('w');
+		lab.JogadaParado('w');
+		lab.JogadaParado('d');
+		
+		assertEquals(' ', lab.lab.lab[3][1] );
+		
 		
 		
 	}
-	//@Test
+	@Test
 	public void testVictory() {
-		Heroi heroi = new Heroi();
-		Dragao drake = new Dragao();
-		CommandLine cli = new CommandLine();
-		LabirintoDraw labirinto = new LabirintoDraw();
-		heroi.armado = true;
-		heroi.x = 8;
-		heroi.y = 4;
-		drake.estado = "morto";
-		cli.moveHeroKey('s',labirinto,drake,heroi);
-		cli.moveHeroKey('d',labirinto,drake,heroi);
+		Labirinto lab = new Labirinto();
+		lab = StartTest();
+		int x = lab.heroi.x;
+		int y = lab.heroi.y;
 		
-		assertEquals(1, cli.ganhaste);
+		lab.JogadaParado('s');
+		lab.JogadaParado('s');
+		lab.JogadaParado('w');
+		lab.JogadaParado('w');
+		lab.JogadaParado('d');
+		lab.JogadaParado('d');
+		lab.JogadaParado('d');
+		lab.JogadaParado('d');
+		
+		
+		assertEquals(1, lab.cli.ganhaste);
 	}
 	
-	//@Test
+	@Test
 	public void testVictoryFail() {
-		Heroi heroi = new Heroi();
-		Dragao drake = new Dragao();
-		CommandLine cli = new CommandLine();
-		LabirintoDraw labirinto = new LabirintoDraw();
-		heroi.x = 8;
-		heroi.y = 4;
-		cli.moveHeroKey('s',labirinto,drake,heroi);
-		cli.moveHeroKey('d',labirinto,drake,heroi);
+		Labirinto lab = new Labirinto();
+		lab = StartTest();
+		int x = lab.heroi.x;
+		int y = lab.heroi.y;
+		lab.lab.drakes.get(0).x = 3;
+		lab.lab.drakes.get(0).y = 3;
 		
-		assertEquals(0, cli.ganhaste);
+		
+		lab.JogadaParado('d');
+		lab.JogadaParado('d');
+		lab.JogadaParado('d');
+		lab.JogadaParado('d');
+		
+		
+		assertEquals(0, lab.cli.ganhaste);
 	}
 	
 	
-	//@Test
+	@Test
 	public void testVictoryAFail() {
-		Heroi heroi = new Heroi();
-		Dragao drake = new Dragao();
-		CommandLine cli = new CommandLine();
-		LabirintoDraw labirinto = new LabirintoDraw();
-		heroi.armado= true;
-		heroi.x = 8;
-		heroi.y = 4;
-		cli.moveHeroKey('s',labirinto,drake,heroi);
-		cli.moveHeroKey('d',labirinto,drake,heroi);
+		Labirinto lab = new Labirinto();
+		lab = StartTest();
+		int x = lab.heroi.x;
+		int y = lab.heroi.y;
+		lab.lab.drakes.get(0).x = 3;
+		lab.lab.drakes.get(0).y = 3;
 		
-		assertEquals(0, cli.ganhaste);
+		
+		lab.JogadaParado('s');
+		lab.JogadaParado('s');
+		lab.JogadaParado('w');
+		lab.JogadaParado('w');
+		lab.JogadaParado('d');
+		lab.JogadaParado('d');
+		lab.JogadaParado('d');
+		lab.JogadaParado('d');
+		
+		
+		assertEquals(0, lab.cli.ganhaste);
 	}
 	
 	
-	//@Test
+	@Test
 	public void testDragonMove(){
-		Dragao drake = new Dragao();
-		CommandLine cli = new CommandLine();
-		LabirintoDraw labirinto = new LabirintoDraw();
-		drake.move(labirinto);
-		assertEquals(1,drake.x);
-		assertEquals(2,4,drake.y);
+		Labirinto lab = new Labirinto();
+		lab = StartTest();
+		int x = lab.heroi.x;
+		int y = lab.heroi.y;
+		lab.lab.drakes.get(0).x = 3;
+		lab.lab.drakes.get(0).y = 3;
+		
+		
+		lab.JogadaParado('s');
+		
+		assertEquals(3,lab.lab.drakes.get(0).y);
+		assertEquals(2,4,lab.lab.drakes.get(0).x);
 		
 		
 		
 	}
 	
 	
-	*/
+	
 }
